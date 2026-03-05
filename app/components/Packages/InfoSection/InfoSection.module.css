@@ -1,0 +1,41 @@
+.infoSection {
+  border-radius: 6px;
+  margin-top: -50px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.unorderedList {
+  margin: 0 0 1rem 1.5rem;
+  padding: 0;
+}
+
+.descriptionList {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.descriptionTitle {
+  font-weight: bold;
+}
+
+.descriptionRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.descriptionContent {
+  color: #222;
+}

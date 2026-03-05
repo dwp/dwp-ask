@@ -1,0 +1,21 @@
+.Pagination {
+  width: 100%;
+  display: flex;
+  flex-flow: row-reverse;
+  color: var(--govuk-blue-text);
+}
+
+.navActivate {
+  color: #ffffff !important;
+}
+
+.navDefault a {
+  color: #1d70b8 !important;
+}
+
+.disabledLink {
+  pointer-events: none;
+  display: none;
+  text-decoration: none;
+  cursor: not-allowed;
+}

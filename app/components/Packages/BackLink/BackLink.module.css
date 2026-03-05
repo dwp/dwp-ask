@@ -1,0 +1,53 @@
+.backLink {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-left: 14px;
+  color: #0b0c0c;
+  text-decoration: underline;
+}
+
+.backLink:visited {
+  color: #0b0c0c;
+}
+
+.backLink:hover {
+  color: #0b0c0c;
+  cursor: pointer;
+}
+
+.backLink:active {
+  color: #0b0c0c;
+}
+
+.backLink:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}
+
+.backLink[href] {
+  border-bottom: 1px solid #0b0c0c;
+}
+
+.backLink::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: -1px;
+  bottom: 1px;
+  left: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  clip-path: polygon(0% 50%, 100% 100%, 100% 0%);
+  border-width: 5px 10px 5px 0;
+  border-right-color: currentColor;
+}

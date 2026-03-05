@@ -1,0 +1,35 @@
+.linkButton {
+  background: none;
+  border: none;
+  color: #0c66e4;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+.linkButton:hover {
+  text-decoration: none;
+}
+
+.resetButton {
+  all: unset; /* Resets all inherited and default styles */
+  cursor: pointer; /* Ensures the pointer cursor appears on hover */
+  color: inherit; /* Inherit text color */
+  text-decoration: none; /* Remove underline if present */
+  font: inherit; /* Inherit font styles */
+}
+
+.resetButton:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 0.1578em;
+  color: inherit; /* Ensure it inherits the text color */
+}
+
+.govuk_blue_text {
+  color: var(--govuk-blue-text);
+}

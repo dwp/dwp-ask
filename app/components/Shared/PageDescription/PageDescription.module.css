@@ -1,0 +1,9 @@
+.chatBacklink {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.chatFilterMessage {
+  margin-top: 20px !important;
+  width: 100%;
+}

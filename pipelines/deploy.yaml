@@ -1,0 +1,207 @@
+.install-dependencies: &install-dependencies
+  before_script:
+    - echo "Installing NVM"
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    - export NVM_DIR="$HOME/.nvm"
+    - . "$NVM_DIR/nvm.sh"
+    - nvm install 22.18.0
+    - node -v
+    - echo "Configuring npm registry"
+    - npm config set registry https://registry.npmjs.org/
+    - npm config set -g strict-ssl false
+    - echo "Installing project dependencies"
+    - npm install --verbose
+
+lint-check:
+  stage: code-quality
+  extends: .install-dependencies
+  rules:
+    - if: "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'develop'"
+      when: always
+    - if: "$CI_COMMIT_BRANCH == 'develop'"
+      when: never
+  script:
+    - echo "Running lint and formatting checks"
+    - npm run check
+    - npm run type-check
+    - npm run lint
+
+unit-tests:
+  stage: test
+  extends: .install-dependencies
+  rules:
+    - if: "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'develop'"
+      when: always
+    - if: "$CI_COMMIT_BRANCH == 'develop'"
+      when: never
+  script:
+    - echo "Running unit tests"
+    - npm run test:notest
+
+docker_build_check:
+  stage: test
+  extends: .install-dependencies
+  rules:
+    - if: "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'develop'"
+      when: always
+    - if: "$CI_COMMIT_BRANCH == 'develop'"
+      when: never
+  script:
+    - docker build --build-arg GITLAB_AUTH_TOKEN=$GITLAB_AUTH_TOKEN --no-cache .
+
+.check-version: &check-version
+  - if [ -z "$IMAGE_VERSION" ]; then echo "IMAGE_VERSION is not set"; exit 1; fi
+  - echo "IMAGE_VERSION is set to $IMAGE_VERSION"
+
+docker-build:
+  stage: docker-build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" && $CI_PIPELINE_SOURCE == "push"
+      when: on_success
+    - if: $CI_COMMIT_BRANCH =~ /^hotfix\/.*$/
+      when: on_success
+    - when: never
+  script:
+    - *check-version
+    - export GITLAB_REGISTRY_IMAGE="registry.gitlab.com/dwp/a-cubed/$IMAGE_FRONT_END:$IMAGE_VERSION"
+    - docker build --build-arg GITLAB_AUTH_TOKEN=$GITLAB_AUTH_TOKEN -t $GITLAB_REGISTRY_IMAGE .
+    - echo "$PROJECT_ACCESS_TOKEN" | docker login registry.gitlab.com -u $PROJECT_ACCESS_TOKEN_USERNAME --password-stdin
+    - docker push $GITLAB_REGISTRY_IMAGE
+  needs:
+    - job: create-alpha-version
+      artifacts: true
+      optional: true
+    - job: create-hotfix-version
+      artifacts: true
+      optional: true
+
+.push-to-acr: &push-to-acr
+  id_tokens:
+    AZURE_ID_TOKEN:
+      aud: "api://AzureADTokenExchange"
+  stage: push-to-acr
+  needs:
+    - job: docker-build
+      optional: true
+    - job: create-alpha-version
+      artifacts: true
+      optional: true
+    - job: create-rc-version
+      artifacts: true
+      optional: true
+    - job: create-hotfix-version
+      artifacts: true
+      optional: true
+    - job: create-release-version
+      artifacts: true
+      optional: true
+  script:
+    - *check-version
+    - git fetch --tags
+    - |
+      if [[ "$CI_COMMIT_BRANCH" =~ ^release/.* ]]; then
+        # For release branches, find the latest alpha version for the same base version
+        BASE_VERSION=$(echo "$IMAGE_VERSION" | sed 's/-rc\..*//')
+        ALPHA_VERSION=$(git tag --sort=-v:refname | grep "alpha\." | head -n 1)
+        export GITLAB_REGISTRY_IMAGE="registry.gitlab.com/dwp/a-cubed/$IMAGE_FRONT_END:$ALPHA_VERSION"
+        echo "Using alpha image: $GITLAB_REGISTRY_IMAGE"
+      elif [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+        # For main branch, find the corresponding rc or fix tag
+        RC_VERSION=$(git tag --points-at $CI_COMMIT_SHA --sort=-v:refname | grep "rc\." | head -n 1 || true)
+        FIX_VERSION=$(git tag --points-at $CI_COMMIT_SHA --sort=-v:refname | grep "fix\." | head -n 1 || true)
+        if [[ "$FIX_VERSION" ]]; then
+          SOURCE_VERSION="$FIX_VERSION"
+        else
+          SOURCE_VERSION="$RC_VERSION"
+        fi
+        export GITLAB_REGISTRY_IMAGE="registry.gitlab.com/dwp/a-cubed/$IMAGE_FRONT_END:$SOURCE_VERSION"
+        echo "Using source image: $GITLAB_REGISTRY_IMAGE"
+      else
+        # For develop branch, use the current version
+        export GITLAB_REGISTRY_IMAGE="registry.gitlab.com/dwp/a-cubed/$IMAGE_FRONT_END:$IMAGE_VERSION"
+      fi
+    - echo "$PROJECT_ACCESS_TOKEN" | docker login registry.gitlab.com -u $PROJECT_ACCESS_TOKEN_USERNAME --password-stdin
+    - docker pull $GITLAB_REGISTRY_IMAGE
+    - |
+      if [[ "$CI_COMMIT_BRANCH" =~ ^release/.* ]] || [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+        # Tag the pulled image with the new version in GitLab registry
+        NEW_GITLAB_IMAGE="registry.gitlab.com/dwp/a-cubed/$IMAGE_FRONT_END:$IMAGE_VERSION"
+        docker tag $GITLAB_REGISTRY_IMAGE $NEW_GITLAB_IMAGE
+        docker push $NEW_GITLAB_IMAGE
+        echo "Tagged and pushed new version: $NEW_GITLAB_IMAGE"
+      fi
+    - echo "Logging into Azure Container Registry"
+    - az login --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID --federated-token $AZURE_ID_TOKEN
+    - az account set --subscription $AZURE_SUBSCRIPTION_ID
+    - az acr login --name $ACR_NAME
+    - echo "Running Docker Push - $IMAGE_NAME:$IMAGE_VERSION"
+    - docker tag $GITLAB_REGISTRY_IMAGE $ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_VERSION
+    - docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_VERSION
+
+push-to-acr-devt:
+  <<: *push-to-acr
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" && $CI_PIPELINE_SOURCE == "push"
+      when: on_success
+  variables:
+    ENVIRONMENT: "devt"
+  environment:
+    name: devt
+
+push-to-acr-test:
+  <<: *push-to-acr
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^release\/.*$/ && $CI_PIPELINE_SOURCE == "push"
+      when: on_success
+  variables:
+    ENVIRONMENT: "test"
+  environment:
+    name: test
+
+push-to-acr-stag:
+  <<: *push-to-acr
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
+      when: on_success
+  variables:
+    ENVIRONMENT: "stag"
+  environment:
+    name: stag
+  tags:
+    - az-prod-ss
+
+push-to-acr-prod:
+  <<: *push-to-acr
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
+      when: on_success
+  variables:
+    ENVIRONMENT: "prod"
+  environment:
+    name: prod
+  tags:
+    - az-prod-ss
+
+web-deploy:
+  stage: web-deploy
+  id_tokens:
+    AZURE_ID_TOKEN:
+      aud: "api://AzureADTokenExchange"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+      when: always
+  script:
+    - export ACR_IMAGE=$ACR_NAME.azurecr.io/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+    - echo "Running Docker Build"
+    - echo $ACR_IMAGE
+    - docker build --no-cache -t $ACR_IMAGE .
+    - echo "Logging into Container Registry"
+    - az login --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID --federated-token $AZURE_ID_TOKEN
+    - az account set --subscription $AZURE_SUBSCRIPTION_ID
+    - az acr login --name $ACR_NAME
+    - echo "Running Docker Push - $ACR_IMAGE"
+    - docker push $ACR_IMAGE
+  environment:
+    name: $ENVIRONMENT
+  tags:
+    - az-nonp-ss

@@ -1,0 +1,41 @@
+.countryCardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+  width: 70%;
+}
+
+.countryCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4c2c92;
+  color: #4c2c92;
+  text-align: center;
+  box-shadow: 0px -2px 0px 0px #929191 inset;
+  font-size: 19px;
+  cursor: pointer;
+  padding: 10px;
+  align-content: center;
+  justify-content: center;
+  margin: 0 !important;
+  background-color: white;
+  max-width: 175px;
+}
+
+.countryCard div {
+  margin: 0 !important;
+}
+
+.countryCard:focus {
+  outline: 3px solid transparent;
+  background-color: #fd0;
+  box-shadow:
+    0 -2px #fd0,
+    0 4px #0b0c0c;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: black;
+}

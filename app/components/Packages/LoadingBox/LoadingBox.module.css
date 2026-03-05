@@ -1,0 +1,68 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.innerWrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn var(--time-in) ease-in-out;
+}
+
+.spinner {
+  z-index: 101;
+  width: 50px;
+  height: 50px;
+  animation: spinnerFadeIn var(--time-in) ease-in-out;
+  animation-delay: calc(var(--time-in) / 2);
+  animation-fill-mode: both;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.85);
+  animation: overlayFadeIn var(--time-in) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spinnerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayFadeIn {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+}

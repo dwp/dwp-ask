@@ -1,0 +1,125 @@
+.button {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 22px;
+  padding: 7px 10px;
+  border: 2px solid transparent;
+  border-radius: 0;
+  color: var(--button-text-colour, #ffffff);
+  background-color: var(--button-colour, #00703c);
+  box-shadow: 0 2px 0 var(--button-shadow-colour, #002d18);
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: "GDS Transport", arial, sans-serif;
+  font-size: 19px;
+  line-height: 19px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.button:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px;
+}
+
+.button:link,
+.button:visited,
+.button:active,
+.button:hover {
+  color: var(--button-text-colour, #ffffff);
+  text-decoration: none;
+}
+
+.button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(
+    --button-hover-colour,
+    color-mix(in srgb, var(--button-colour, #00703c) 85%, black)
+  );
+}
+
+.button:active {
+  top: 2px;
+  box-shadow: none;
+}
+
+.button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -4px;
+  left: -2px;
+  background: transparent;
+}
+
+.button:active::before {
+  top: -4px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  background: var(--button-colour, #00703c);
+}
+
+.button:disabled:hover {
+  background-color: var(--button-colour, #00703c);
+  cursor: default;
+}
+
+.button:disabled:focus {
+  outline: none;
+}
+
+.button:disabled:active {
+  top: 0;
+  box-shadow: 0 2px 0 var(--button-shadow-colour, #002d18);
+}
+
+.button svg {
+  max-width: 15px;
+}
+
+.start {
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  padding: 7px 15px;
+}
+
+.withIcon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.withIcon svg {
+  margin-left: 10px;
+}
+
+.contents {
+  flex-grow: 1;
+}
+
+@media (min-width: 40.0625em) {
+  .button {
+    width: auto;
+  }
+
+  .button svg {
+    margin-left: 10px;
+  }
+}

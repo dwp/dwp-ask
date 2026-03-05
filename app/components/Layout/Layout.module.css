@@ -1,0 +1,22 @@
+.appContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.appChildren {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.freeFlowPageLayout {
+  height: auto !important;
+}
+
+.naturalFlow {
+  overflow-y: visible !important;
+  height: auto !important;
+  flex-grow: 0 !important;
+}

@@ -1,0 +1,12 @@
+.chatWindow {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.chatWindow td {
+  color: "#OB0C0C";
+}

@@ -1,0 +1,128 @@
+.sources_accordion {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  color: #1d70b8;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sources_accordion:last-of-type {
+  margin-bottom: 0;
+}
+
+.accordion_heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion_title {
+  text-decoration: underline;
+  font-weight: 700 !important;
+  font-size: 19px !important;
+  color: #1d70b8 !important;
+}
+
+.accordion_title:visited {
+  color: #1d70b8 !important;
+}
+
+.accordion_right {
+  white-space: nowrap;
+}
+
+.accordion_left,
+.accordion_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accordion_title,
+.accordion_expand {
+  cursor: pointer;
+}
+
+.accordion_button {
+  all: unset;
+  padding: 0.5rem;
+  border: 1px solid #ffffff00;
+  font-size: 19px !important;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.accordion_title:focus,
+.accordion_button:focus {
+  outline: 3px solid transparent;
+  background-color: #fd0;
+  box-shadow:
+    0 -2px #fd0,
+    0 4px #0b0c0c;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: black;
+}
+
+.accordion_content {
+  margin-top: 20px;
+}
+
+.accordion_text {
+  font-size: 19px;
+  color: rgb(11, 12, 12);
+}
+
+.markdown_list_item {
+  font-size: 19px;
+  color: black;
+}
+
+.markdown-link {
+  text-decoration: underline;
+  font-size: 19px !important;
+  color: #1d70b8 !important;
+}
+
+.markdown-link:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}
+
+.govuk_table__row {
+  padding: 10px 20px 10px 0;
+  border-bottom: 1px solid #b1b4b6;
+  text-align: left;
+  vertical-align: top;
+  color: rgb(11, 12, 12);
+  font-size: 19px;
+}
+
+.govuk_table__header {
+  padding: 10px 20px 10px 0;
+  border-bottom: 1px solid #b1b4b6;
+  text-align: left;
+  vertical-align: top;
+  color: rgb(11, 12, 12);
+  font-weight: 700;
+  font-size: 19px;
+}
+
+.govuk_table {
+  margin-bottom: 30px;
+}
+
+.markdown_link {
+  text-decoration: underline;
+  font-size: 19px !important;
+  color: #1d70b8 !important;
+}
+
+.markdown_link:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}

@@ -1,0 +1,25 @@
+.accessibilityBacklink {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.noUnderline {
+  text-decoration: none;
+  cursor: pointer;
+  color: #0c66e4;
+}
+
+.noUnderline:hover {
+  text-decoration: underline;
+}
+
+.underline {
+  cursor: pointer;
+  color: #0c66e4;
+}
+
+.link:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}

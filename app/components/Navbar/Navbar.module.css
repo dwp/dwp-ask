@@ -1,0 +1,105 @@
+.navbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.menuWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-end;
+}
+
+.navbarMenu {
+  margin-top: 6px;
+  background: transparent;
+  border: none;
+  min-width: 160px;
+}
+
+.menuListNavbar {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 8px;
+}
+
+.navbarLink,
+.navbarLink:visited {
+  color: white !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  font-size: 18px;
+  padding: 5px;
+  text-align: left;
+}
+
+.navbarLink:hover {
+  text-decoration: underline !important;
+}
+
+.navbarLink,
+.navbarLink:visited {
+  color: white !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+.navbarLink:hover {
+  text-decoration: underline !important;
+}
+
+.navbarButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  padding: 6px 8px;
+  font-size: 16px;
+}
+
+.navbarButton:focus,
+.navbarContainer:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+  color: #1d70b8;
+}
+
+.navbarLink:focus {
+  color: #1d70b8 !important;
+  font-weight: bold !important;
+  text-decoration: underline !important;
+}
+
+.label {
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 19px;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .menuListNavbar {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  .navbarLink {
+    text-align: right;
+  }
+}

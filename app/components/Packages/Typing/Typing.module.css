@@ -1,0 +1,44 @@
+.typingContainer {
+  width: 100%;
+  height: 45px;
+  background-color: #f3f2ef;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.typingDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #8d8c8a;
+  animation: bounce 0.8s infinite;
+}
+
+.typingText {
+  font-size: 19px;
+}
+
+.typingDot:nth-child(1) {
+  animation-delay: 0s;
+}
+.typingDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typingDot:nth-child(1) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

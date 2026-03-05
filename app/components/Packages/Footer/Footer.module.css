@@ -1,0 +1,28 @@
+.footerWrapper {
+  margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  position: relative;
+  border-top: 1px solid rgb(161, 172, 178);
+  background: rgb(243, 242, 241);
+  color: rgb(69, 74, 76);
+}
+
+.footerModifiedPadding {
+  padding: 20px 0 !important;
+}
+
+.footerModifiedPadding div:has(.footerLinks) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 30px;
+}
+
+.footerNormal {
+  position: static !important;
+}

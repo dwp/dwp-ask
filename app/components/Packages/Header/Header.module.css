@@ -1,0 +1,30 @@
+.topnavHeader {
+  margin-bottom: -10px;
+}
+
+.headerContainer {
+  max-width: 100%;
+  padding: 1em 32px !important;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.headerFormattingDwp {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.headerFormattingAsk {
+  display: inline-block;
+  font-size: 30px !important;
+}
+
+.navbarWrapper {
+  display: flex;
+  align-items: center;
+}

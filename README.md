@@ -1,32 +1,34 @@
+## Getting Started
 
-Use this template to create new prototypes in DWP. This template is updated with every major version release of the GOVUK prototype kit. 
+First, run the development server:
 
-Best practice:<br>
-<br>
-Run npm audit regularly<br>
-Keep package-lock.json under version control<br>
-Do not blindly update packages without review<br>
-Never connect to internal APIs or production systems<br>
-Never store or process real user data<br>
-Remove old or unused prototypes promptly<br>
-Document the purpose and owner of each prototype clearly<br>
-Avoid turning prototypes into live services<br>
-Do not allow open write access to external collaborators<br>
-<br>
-Support
+```bash
+npm run dev
+```
 
-If you've got a question, idea or suggestion about the GOVUK protoype kit, get in touch with the GOV.UK Prototype team.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The GOV.UK Prototype team provides support to people who use the Prototype Kit and work in government.
+## Precommit hook
 
-We cannot give general advice to the public. We do not have access to information about you held by government departments.
+```bash
+npm run check
+npm run lint
+npm run type-check
+npm run test:notest
+commit message check validation
+```
 
-For other enquiries, use the contact form on GOV.UK.
+## Commit message format
 
-Slack
-
-Use the #govuk-prototype-kit channel on cross-government Slack.
-
-Email
-
-Email the GOV.UK Prototype team at govuk-prototype-kit-support@digital.cabinet-office.gov.uk.
+```bash
+build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+ci: Changes to our CI configuration files and scripts (example scopes: Gitlab, Travis, Circle, BrowserStack, SauceLabs)
+docs: Documentation only changes
+feat: A new feature
+fix: A bug fix
+perf: A code change that improves performance
+refactor: A code change that neither fixes a bug nor adds a feature
+style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+test: Adding missing tests or correcting existing tests
+chore: Other changes that don't modify source or test files (.gitignore, .gitattributes etc).
+```

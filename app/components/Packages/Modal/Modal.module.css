@@ -1,0 +1,154 @@
+/* Modal */
+.modal {
+  z-index: 103;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 3rem;
+  width: 40%;
+  max-width: 80%;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeading {
+  font-size: 36px !important;
+}
+
+.modalHeading:focus {
+  outline: 3px solid transparent;
+  background-color: #fd0;
+  box-shadow:
+    0 -2px #fd0,
+    0 4px #0b0c0c;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: black;
+}
+
+.modalDescription {
+  font-size: 24px !important;
+  margin-bottom: 3rem !important;
+}
+
+.modalDescriptionNone {
+  margin: 0 !important;
+}
+
+.modalActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+.modalCloseButton {
+  font-size: 19px !important;
+  margin: 0 !important;
+  font-weight: 700 !important;
+}
+
+.modalCloseText {
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 19px;
+  color: var(--govuk-blue-text) !important;
+}
+
+/* 200% */
+@media screen and (max-width: 876px) {
+  .modalContent {
+    width: 70%;
+    height: 60%;
+  }
+}
+
+/* 250% */
+@media screen and (max-width: 691.2px) {
+  .modalContent {
+    width: 70%;
+    height: 50%;
+    padding: 3rem;
+  }
+
+  .modalHeading {
+    font-size: 26px !important;
+  }
+
+  .modalDescription {
+    font-size: 20px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .modalCloseButton {
+    font-size: 13px !important;
+  }
+
+  .modalCloseText {
+    margin-left: 1.5rem;
+    font-size: 13px !important;
+    color: #1d70b8;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+/* 300% */
+@media screen and (max-width: 576px) {
+  .modalHeading {
+    font-size: 20px !important;
+  }
+
+  .modalDescription {
+    font-size: 15px !important;
+    /* margin-bottom: 1rem !important; */
+  }
+
+  .modalCloseButton {
+    font-size: 10px !important;
+    width: 50% !important;
+  }
+
+  .modalCloseText {
+    margin-left: 1.5rem;
+    font-size: 10px !important;
+    color: #1d70b8;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .modalActions {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+/* 400% */
+@media screen and (max-width: 432px) {
+  .modalHeading {
+    font-size: 15px !important;
+  }
+
+  .modalDescription {
+    font-size: 10px !important;
+    /* margin-bottom: 1rem !important; */
+  }
+
+  .modalCloseButton {
+    font-size: 10px !important;
+    width: 50% !important;
+  }
+}

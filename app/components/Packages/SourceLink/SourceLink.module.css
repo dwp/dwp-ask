@@ -1,0 +1,36 @@
+.accordion_title {
+  text-decoration: underline;
+  font-weight: 700 !important;
+  font-size: 19px !important;
+  color: #1d70b8 !important;
+  width: fit-content;
+}
+
+.accordion_title:visited {
+  color: #1d70b8 !important;
+}
+
+.accordion_left {
+  display: flex;
+  align-items: center;
+}
+
+.accordion_title {
+  cursor: pointer;
+}
+
+.accordion_title:focus {
+  outline: 3px solid transparent;
+  background-color: #fd0;
+  box-shadow:
+    0 -2px #fd0,
+    0 4px #0b0c0c;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: black;
+}
+
+.accordion_content {
+  margin-top: 20px;
+}

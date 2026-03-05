@@ -1,0 +1,19 @@
+.exportButton {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.exportButton a {
+  font-size: 19px;
+  font-weight: 300;
+  cursor: pointer;
+  color: #1d70b8 !important;
+}
+
+.resultText {
+  font-size: 19px;
+}

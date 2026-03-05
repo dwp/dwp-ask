@@ -1,0 +1,22 @@
+@keyframes fadeInOut {
+  0% {
+    opacity: 0.250075;
+  }
+  0.01% {
+    opacity: 0.25;
+  }
+  0.03% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.250075;
+  }
+}
+
+.spinner {
+  /* Base spinner styles can be added here if needed */
+}
+
+.rect {
+  animation: fadeInOut 1s infinite linear;
+}

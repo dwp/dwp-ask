@@ -1,0 +1,18 @@
+.chatInputContainer {
+  width: 100%;
+  margin: 0 auto;
+  flex: 0 0 auto;
+  padding: 12px 0 20px;
+}
+
+.chatInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.chatInput div {
+  flex-grow: 1;
+}
