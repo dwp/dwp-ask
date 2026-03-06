@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { Card, Link, ChevronUp, ChevronDown } from "@/app/components";
-import { templates } from "./templates";
+import { useEffect, useRef, useState } from "react";
+import { Card, ChevronDown, ChevronUp, Link } from "@/app/components";
 import styles from "./QuestionTemplates.module.css";
+import { registerQuestionTemplatesOpener } from "./questionTemplatesController";
+import { templates } from "./templates";
 
 type QuestionTemplatesProps = {
   handleCardClick: (text: string) => void;
@@ -17,6 +18,7 @@ export default function QuestionTemplates({
   const accordionContentRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
   const [focused, setFocused] = useState(false);
+  const toggleRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null);
 
   useEffect(() => {
     setFocused(focused);
@@ -28,9 +30,17 @@ export default function QuestionTemplates({
     }
   }, [expanded]);
 
+  useEffect(() => {
+    return registerQuestionTemplatesOpener(() => {
+      setExpanded(true);
+      toggleRef.current?.focus();
+    });
+  }, []);
+
   return (
     <div className={styles.question_templates} data-testid="question-templates">
       <Link
+        ref={toggleRef}
         tabIndex={isDisabled ? -1 : 0}
         data-testid="question-templates-toggle"
         aria-expanded={expanded}

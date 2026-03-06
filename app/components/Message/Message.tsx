@@ -1,11 +1,12 @@
 "use client";
 
-import { ChatHistoryType } from "@/app/types";
-import Answer from "../Answer/Answer";
-import { SectionBreak, Paragraph } from "@/app/components";
-import { trimWhitespace } from "@/app/utils";
-import styles from "./Message.module.css";
+import type { SetStateAction } from "react";
+import { Paragraph, SectionBreak } from "@/app/components";
 import { UserView } from "@/app/enum";
+import type { ChatHistoryType } from "@/app/types";
+import { trimWhitespace } from "@/app/utils";
+import Answer from "../Answer/Answer";
+import styles from "./Message.module.css";
 
 type MessageProps = {
   message: ChatHistoryType;
@@ -13,6 +14,8 @@ type MessageProps = {
   setTyping: Function;
   isView?: boolean | false;
   userView?: UserView;
+  counter: number;
+  setCounter: React.Dispatch<SetStateAction<number>>;
 };
 
 export default function Message({
@@ -21,6 +24,8 @@ export default function Message({
   setTyping,
   isView,
   userView = UserView.You,
+  counter,
+  setCounter,
 }: Readonly<MessageProps>) {
   const Question = ({ question }: { question: string }) => {
     return (
@@ -59,6 +64,8 @@ export default function Message({
           setLoadedChatHistory={setLoadedChatHistory}
           setTyping={setTyping}
           isView={isView}
+          counter={counter}
+          setCounter={setCounter}
         />
       )}
       <SectionBreak level="m" visible={false} />

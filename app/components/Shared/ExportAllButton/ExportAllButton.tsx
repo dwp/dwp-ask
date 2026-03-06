@@ -8,9 +8,8 @@ export default function ExportAllButton({
   resultText,
   rowsLength,
 }: {
-  onClick?: (
+  onClick: (
     event:
-      | React.MouseEvent<HTMLAnchorElement, MouseEvent>
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
       | React.KeyboardEvent<HTMLButtonElement>,
   ) => void;

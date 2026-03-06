@@ -1,4 +1,4 @@
-import { FeedbackApiResponse } from "@/app/types";
+import type { FeedbackApiResponse } from "@/app/types";
 
 const getFeedback = async (): Promise<FeedbackApiResponse> => {
   const response = await fetch("/api/get-feedback", {

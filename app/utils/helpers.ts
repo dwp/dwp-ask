@@ -1,6 +1,6 @@
-import { DateParts, QueryResponseType } from "../types";
-import { loadHistory, updateHistory } from "./storage/storage";
 import { URLRegex } from "../constants/PageMetadata";
+import type { DateParts, QueryResponseType } from "../types";
+import { loadHistory, updateHistory } from "./storage/storage";
 
 const GENERIC_ERROR =
   "Apologies, we have had a technical issue. Please try again in a few minutes.";
@@ -73,13 +73,14 @@ export const sanitisePathname = (pathname: string) => {
 };
 
 /**
- * Filters out default responses
+ * Filters out system or error responses
  * @param chatHistory array of chat history objects
  * @returns filtered array with only user queries and valid answers
  */
 export const filterChatHistory = (chatHistory: QueryResponseType[]) => {
   return chatHistory.filter(
-    (item) => item.type !== "error" && !item.default_response && item.answer,
+    (item) =>
+      item.type !== "error" && item.answer && item.type !== "chooseCountry",
   );
 };
 

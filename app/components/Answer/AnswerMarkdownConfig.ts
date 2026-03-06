@@ -1,5 +1,5 @@
-import { H3, H4, H5, Link, LabelText } from "@/app/components";
-import { SanitisedMarkdownProps } from "../SanitisedMarkdown/SanitisedMarkdown";
+import { H3, H4, H5, LabelText, Link } from "@/app/components";
+import type { SanitisedMarkdownProps } from "../SanitisedMarkdown/SanitisedMarkdown";
 
 const createAnswerMarkdownOptions = (
   styles: Record<string, string>,

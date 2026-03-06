@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  Link,
-  ChevronUp,
   ChevronDown,
+  ChevronUp,
+  Link,
   SanitisedMarkdown,
 } from "@/app/components";
-import { formatTitle, formatMarkdown } from "@/app/utils/message-helpers";
-import { createAccordionMarkdownOptions } from "./SourcesAccordionMarkdownConfig";
+import { formatMarkdown, formatTitle } from "@/app/utils/message-helpers";
 import styles from "./SourcesAccordion.module.css";
+import { createAccordionMarkdownOptions } from "./SourcesAccordionMarkdownConfig";
 
 type SourcesAccordionProps = {
   source: { title: string; url: string; chunks: string };

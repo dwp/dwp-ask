@@ -1,9 +1,11 @@
 "use server";
 
 import Header from "../Packages/Header/Header";
-import LayoutModals from "./LayoutModals";
+import PhaseBanner from "../PhaseBanner/PhaseBanner";
+import SkipLink from "../SkipLink/SkipLink";
 import styles from "./Layout.module.css";
 import LayoutClient from "./LayoutClient";
+import LayoutModals from "./LayoutModals";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -16,8 +18,10 @@ export default async function Layout({ children }: LayoutProps) {
       className={styles.appContainer}
       data-testid="app-container"
     >
+      <SkipLink />
       <LayoutClient />
       <Header />
+      <PhaseBanner />
       <LayoutModals />
       <main id="app-children" className={styles.appChildren}>
         {children}

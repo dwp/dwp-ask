@@ -117,7 +117,7 @@ export function returnPrototypeResponse(counter: number) {
     id: 3,
   };
 
-  const q1 = {
+  const _q1 = {
     answer:
       "Apologies, I cannot answer your question. Please rephrase or provide more details. If this is not a guidance related question, please refer to resources under Universal Learning.",
     citations: [],

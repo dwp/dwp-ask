@@ -1,5 +1,5 @@
-import { NextRequest } from "next/server";
-import { setAccessToken, generateErrorMessage } from "@/app/utils/api";
+import type { NextRequest } from "next/server";
+import { generateErrorMessage, setAccessToken } from "@/app/utils/api";
 
 type RequestHandlerParams = {
   req: NextRequest;

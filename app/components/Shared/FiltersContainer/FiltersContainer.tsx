@@ -1,7 +1,7 @@
-import { Button, H3, DateField, Link } from "@/app/components";
-import { type FiltersContainerProps, DateParts } from "@/app/types";
-import styles from "./FiltersContainer.module.css";
+import { Button, DateField, H3, Link } from "@/app/components";
 import { PageView } from "@/app/enum";
+import type { DateParts, FiltersContainerProps } from "@/app/types";
+import styles from "./FiltersContainer.module.css";
 
 export default function FiltersContainer({
   errorStartText,

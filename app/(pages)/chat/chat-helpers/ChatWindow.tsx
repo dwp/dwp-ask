@@ -1,22 +1,24 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useResponsive, useModal } from "@/app/providers";
-import { Message, ChatInput, ChooseCountry } from "@/app/components";
-import { ChatHistoryType } from "@/app/types";
-import styles from "../Chat.module.css";
+import { ChatInput, ChooseCountry, Message } from "@/app/components";
+import { useLocation, useModal, useResponsive } from "@/app/providers";
+import type { ChatHistoryType } from "@/app/types";
 import { loadHistory } from "@/app/utils";
+import styles from "../Chat.module.css";
 
 export default function ChatWindow() {
   const [typing, setTyping] = useState(false);
   const [loadedChatHistory, setLoadedChatHistory] = useState<ChatHistoryType[]>(
-    []
+    [],
   );
 
   const { isModalVisible } = useModal();
   const { isSmallScreen } = useResponsive();
+  const { location } = useLocation();
   const isModalOpen = Object.values(isModalVisible).includes(true);
   const messageContainerRef = useRef<HTMLDivElement | null>(null);
+  const [counter, setCounter] = useState(1);
 
   useEffect(() => {
     // on reload, load chat history from local storage
@@ -30,7 +32,7 @@ export default function ChatWindow() {
     if (messageContainerRef.current && loadedChatHistory.length) {
       // Get the last message article element
       const lastMessage = messageContainerRef.current.querySelector(
-        'article[data-testid="chat-message"]:last-child'
+        'article[data-testid="chat-message"]:last-child',
       );
       if (lastMessage) {
         // Calculate the position of the last message relative to the container
@@ -44,6 +46,8 @@ export default function ChatWindow() {
     }
   }, [loadedChatHistory]);
 
+  const shouldShowChooseCountry = !location && loadedChatHistory.length === 0;
+
   return (
     <>
       <section
@@ -52,11 +56,14 @@ export default function ChatWindow() {
         role="feed"
         tabIndex={isSmallScreen ? -1 : 0}
         aria-busy={typing}
+        id="main"
       >
-        {loadedChatHistory.length === 0 && (
+        {shouldShowChooseCountry && (
           <ChooseCountry
             setTyping={setTyping}
             setLoadedChatHistory={setLoadedChatHistory}
+            counter={counter}
+            setCounter={setCounter}
           />
         )}
         {loadedChatHistory.length > 0 && (
@@ -72,6 +79,8 @@ export default function ChatWindow() {
                     message={message}
                     setLoadedChatHistory={setLoadedChatHistory}
                     setTyping={setTyping}
+                    counter={counter}
+                    setCounter={setCounter}
                   />
                 </article>
               );
@@ -86,6 +95,8 @@ export default function ChatWindow() {
         setLoadedChatHistory={setLoadedChatHistory}
         typing={typing}
         setTyping={setTyping}
+        counter={counter}
+        setCounter={setCounter}
       />
     </>
   );

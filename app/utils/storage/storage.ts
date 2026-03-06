@@ -64,29 +64,6 @@ const clearHistory = () => {
 };
 
 /**
- * Initiate a chat in session storage
- * - Set location in session storage
- * - Set timestamp in session storage
- * - Clear any previous history
- *
- *
- * @param location location selected from dropdown
- * @returns void
- */
-const initiateSession = (location: string) => {
-  if (locations.includes(location)) {
-    sessionStorage.setItem("location", location);
-  } else {
-    return;
-  }
-  sessionStorage.setItem(
-    "session_timestamp",
-    JSON.stringify(new Date().toDateString()),
-  );
-  clearHistory();
-};
-
-/**
  * Determines whether chat should be cleared based on session timestamp
  *
  * @returns void
@@ -107,7 +84,6 @@ const clearSession = () => {
       "session_timestamp",
       JSON.stringify(new Date().toDateString()),
     );
-    sessionStorage.removeItem("location");
     window.location.reload();
   }
 };
@@ -119,10 +95,12 @@ const clearSession = () => {
  */
 const confirmChangeLocation = (location: string) => {
   if (locations.includes(location)) {
-    sessionStorage.setItem("location", location);
     const newItem = {
       question: `${location}.`,
       answer: `Okay, your claimant is in ${location}. Enter your question.`,
+      type: "chooseCountry",
+      hasSetCountry: true,
+      location,
     };
     addHistory(newItem);
     return newItem;
@@ -131,37 +109,11 @@ const confirmChangeLocation = (location: string) => {
 };
 
 /**
- * Clears location from session storage
- */
-const clearLocation = () => {
-  sessionStorage.removeItem("location");
-};
-
-/**
- * Gets location from session storage
- * @returns location
- */
-const getLocation = () => {
-  try {
-    if (
-      typeof window === "undefined" ||
-      typeof window.sessionStorage === "undefined"
-    ) {
-      return "";
-    }
-    return sessionStorage.getItem("location") ?? "";
-  } catch {
-    return "";
-  }
-};
-
-/**
  * Confirm chat should be cleared in modal -
  * clears chat history and reloads page
  */
 const confirmClearChat = async () => {
   clearHistory();
-  clearLocation();
   window.location.reload();
 };
 
@@ -192,7 +144,6 @@ export {
   addHistory,
   updateHistory,
   clearHistory,
-  initiateSession,
   clearSession,
   confirmChangeLocation,
   confirmClearChat,
@@ -201,6 +152,4 @@ export {
   getViewDetails,
   storeAdminViewDetails,
   getAdminViewDetails,
-  getLocation,
-  clearLocation,
 };

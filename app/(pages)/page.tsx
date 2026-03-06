@@ -1,36 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button, H1, Main, Paragraph } from "../components";
 import "./test.css";
 
-// type LandingPageProps = {
-//   searchParams: Promise<{ code?: string }>;
-// };
-
-type LandingPageProps = {
-  source?: string;
-};
-
-export default function LandingPage({ source }: LandingPageProps) {
+export default function LandingPage() {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // { searchParams }: LandingPageProps
-  // const params = await searchParams;
-  // const code = params?.code;
-  // if (code) {
-  //   redirect("/");
-  // }
 
   const verifyPassword = () => {
     try {
       const CORRECT_PASSWORD = password === "test";
       if (CORRECT_PASSWORD) {
-        router.push(
-          source === "version-b" ? "/version-b/agreement" : "/agreement",
-        );
+        router.push("/agreement");
       }
 
       setError("Incorrect password. Please try again.");

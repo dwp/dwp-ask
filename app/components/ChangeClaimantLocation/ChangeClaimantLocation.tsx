@@ -1,8 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Link } from "@/app/components";
 import { useModal } from "@/app/providers";
-import { usePathname } from "next/navigation";
 
 type ChangeClaimantLocationProps = { className?: string };
 

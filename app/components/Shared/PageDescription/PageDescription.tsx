@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { BackLink, H2, Paragraph, WarningText } from "@/app/components";
-import { type PageDescriptionProps } from "@/app/types";
-import styles from "./PageDescription.module.css";
+import type { PageDescriptionProps } from "@/app/types";
 import ErrorSummary from "../../Packages/ErrorSummary/ErrorSummary";
+import styles from "./PageDescription.module.css";
 
 export default function PageDescription({
   backLink,

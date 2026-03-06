@@ -5,6 +5,7 @@ const MOCK_RESPONSE = {
   error: "",
   code: 200,
   type: "",
+  question_feedback: null,
 };
 
 const MOCK_BODY = {

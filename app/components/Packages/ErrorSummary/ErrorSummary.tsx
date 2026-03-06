@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ErrorSummary.module.css";
 
 type ErrorSummaryItem = {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "../Packages/Chevrons/Chevrons";
 import styles from "./Navbar.module.css";
 

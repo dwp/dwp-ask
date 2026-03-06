@@ -1,28 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type SetStateAction, useEffect, useState } from "react";
 import {
-  Paragraph,
+  Card,
+  CountryCards,
   Feedback,
   FeedbackExpanded,
+  Paragraph,
   SanitisedMarkdown,
-  CountryCards,
   SourceLink,
-  Link,
 } from "@/app/components";
-import { useResponsive, useSidebar, useLocation } from "@/app/providers";
-import { trimWhitespace, confirmChangeLocation } from "@/app/utils";
-import { ChatHistoryType } from "@/app/types";
-import { createAnswerMarkdownOptions } from "./AnswerMarkdownConfig";
-import { usePathname } from "next/navigation";
+import { useLocation, useResponsive } from "@/app/providers";
+import type { ChatHistoryType } from "@/app/types";
+import { confirmChangeLocation, trimWhitespace } from "@/app/utils";
+import sendQueryMessage from "@/app/utils/api/sendQueryMessage";
+import questionTemplateStyles from "../Packages/QuestionTemplates/QuestionTemplates.module.css";
+import StructuredFeedback from "../StructuredFeedback/StructuredFeedback";
 import styles from "./Answer.module.css";
-import { emitCitations } from "@/app/(pages)/version-b/chat/emitCitations";
+import { createAnswerMarkdownOptions } from "./AnswerMarkdownConfig";
 
 type AnswerProps = {
   setLoadedChatHistory: Function;
   setTyping: Function;
   message: ChatHistoryType;
   isView?: boolean;
+  counter: number;
+  setCounter: React.Dispatch<SetStateAction<number>>;
 };
 
 type IsFeedbackHelpful = "yes" | "no" | null;
@@ -33,17 +36,17 @@ const errorText =
 export default function Answer({
   message,
   setLoadedChatHistory,
+  setTyping,
   isView,
+  counter,
+  setCounter,
 }: Readonly<AnswerProps>) {
   const [isFeedbackHelpful, setIsFeedbackHelpful] =
     useState<IsFeedbackHelpful>(null);
   const [feedbackCompleted, setFeedbackCompleted] = useState(
     message.feedback_given || false,
   );
-
-  const pathname = usePathname();
-  const isVersionB = pathname?.includes("version-b");
-  const { toggleSidebar, isSidebarVisible } = useSidebar();
+  const [isSubmittingSuggestion, setIsSubmittingSuggestion] = useState(false);
 
   const { location, setLocation } = useLocation();
   const [isMounted, setIsMounted] = useState(false);
@@ -52,19 +55,54 @@ export default function Answer({
   const { isSmallScreen } = useResponsive();
   const answer = message.answer;
   const isError = message.type === "error" || answer === errorText;
-  const isSourceLinks = message.citations && message.citations.length > 0;
+  const isSourceLinks = Boolean(message.citations?.length);
   const isFirstMessage = message.type === "chooseCountry";
   const showAIStatement = !isError && !isFirstMessage && isSourceLinks;
+  const showCountryCards = !location && !message.hasSetCountry && isMounted;
+  const questionFeedback = message.question_feedback;
+  const shouldUseQuestionFeedback =
+    Boolean(questionFeedback) && !questionFeedback?.out_of_scope;
+  const suggestionQuestions = shouldUseQuestionFeedback
+    ? (questionFeedback?.suggested_questions ?? [])
+    : [];
+  const shouldShowSuggestionButtons =
+    shouldUseQuestionFeedback &&
+    suggestionQuestions.length > 0 &&
+    !isView &&
+    !isError;
+  const hasStructuredQuestionFeedback =
+    shouldShowSuggestionButtons &&
+    (Boolean(questionFeedback?.preamble) ||
+      Boolean(questionFeedback?.postscript));
 
-  const aiStatement =
-    "This AI summary may contain errors. Use the Universal Learning guidance links below to check it:";
+  const handleSuggestedQuestionClick = async (suggestedQuestion: string) => {
+    if (!location || isSubmittingSuggestion) {
+      return;
+    }
+
+    setIsSubmittingSuggestion(true);
+    setTyping(true);
+    setLoadedChatHistory((state: ChatHistoryType[]) => [
+      ...state,
+      { question: suggestedQuestion },
+    ]);
+
+    try {
+      const history = await sendQueryMessage(
+        suggestedQuestion,
+        location,
+        counter,
+      );
+      setLoadedChatHistory(history);
+    } catch (error) {
+      console.error("Failed to submit suggested question:", error);
+    } finally {
+      setTyping(false);
+      setIsSubmittingSuggestion(false);
+    }
+  };
 
   const options = createAnswerMarkdownOptions(styles);
-
-  const handleGuidanceLinkClick = () => {
-    toggleSidebar();
-    emitCitations(message.citations);
-  };
 
   return (
     <article
@@ -87,28 +125,19 @@ export default function Answer({
               className={styles.ai_disclaimer}
               data-testid="ai-answer-disclaimer"
             >
-              {aiStatement.split(". ")[0]}.{"\n"}
+              This AI summary may contain errors.{"\n"}
             </strong>
             <strong
               className={styles.ai_disclaimer}
               data-testid="ai-answer-disclaimer"
             >
-              {aiStatement.split(". ")[1]}
+              Use the Universal Learning guidance links below to check the
+              answer. All links open in a new tab.
             </strong>
           </div>
         )}
 
-        {isVersionB && !isError && isSourceLinks && (
-          <Link
-            tabIndex={isSidebarVisible ? -1 : 0}
-            className={styles.viewGuidanceLink}
-            onClick={handleGuidanceLinkClick}
-          >
-            View the guidance links
-          </Link>
-        )}
-
-        {!isVersionB && isSourceLinks && (
+        {isSourceLinks && (
           <div
             data-testid="source-links"
             className={styles.sourceLinksContainer}
@@ -119,19 +148,62 @@ export default function Answer({
           </div>
         )}
 
-        <SanitisedMarkdown
-          data-testid="answer-markdown"
-          options={options}
-          className={styles.markdownContainer}
-        >
-          {answer}
-        </SanitisedMarkdown>
+        {!hasStructuredQuestionFeedback && (
+          <SanitisedMarkdown
+            data-testid="answer-markdown"
+            options={options}
+            className={styles.markdownContainer}
+          >
+            {answer}
+          </SanitisedMarkdown>
+        )}
 
-        {message.type === "chooseCountry" && isMounted && !location && (
+        {hasStructuredQuestionFeedback && questionFeedback?.preamble && (
+          <div
+            className={styles.questionFeedbackStructured}
+            data-testid="question-feedback-structured"
+          >
+            <StructuredFeedback
+              options={options}
+              copy={questionFeedback?.preamble}
+            />
+          </div>
+        )}
+
+        {shouldShowSuggestionButtons && (
+          <div
+            className={styles.questionFeedbackButtons}
+            data-testid="question-feedback-buttons"
+          >
+            {suggestionQuestions.map((question) => (
+              <Card
+                key={question}
+                text={question}
+                onClick={handleSuggestedQuestionClick}
+                className={questionTemplateStyles.templateCard}
+                dataTestId="question-feedback-button"
+                disabled={isSubmittingSuggestion || !location}
+              />
+            ))}
+          </div>
+        )}
+
+        {hasStructuredQuestionFeedback && questionFeedback?.postscript && (
+          <div
+            className={styles.questionFeedbackPostscript}
+            data-testid="question-feedback-postscript"
+          >
+            <StructuredFeedback
+              options={options}
+              copy={questionFeedback?.postscript}
+            />
+          </div>
+        )}
+
+        {showCountryCards && (
           <CountryCards
             onClickHandler={(country: string) => {
               const newItem = confirmChangeLocation(country);
-              // update provider so all consumers react immediately
               setLocation(country);
               if (newItem) {
                 setLoadedChatHistory((prev: ChatHistoryType[]) => [
@@ -146,8 +218,7 @@ export default function Answer({
         {!isError &&
           !isFeedbackHelpful &&
           !isView &&
-          message.id !== undefined &&
-          !message.default_response && (
+          message.id !== undefined && (
             <Feedback
               feedbackCompleted={feedbackCompleted}
               setIsFeedbackHelpful={setIsFeedbackHelpful}

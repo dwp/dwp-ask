@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import type React from "react";
 import { TableWrapper } from "@/app/components";
-import styles from "./CustomTable.module.css";
 import Pagination from "../../Pagination/Pagination";
+import styles from "./CustomTable.module.css";
 
 type CustomTableProps<T> = Readonly<{
   tableContent: T[];

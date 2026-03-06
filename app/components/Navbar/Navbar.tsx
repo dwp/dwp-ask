@@ -1,13 +1,12 @@
 "use server";
 
 import { headers } from "next/headers";
+import ChangeClaimantLocation from "../ChangeClaimantLocation/ChangeClaimantLocation";
 // import AdminViewNavigation from "../Packages/AdminViewNavigation/AdminViewNavigation";
 import Link from "../Packages/Link/Link";
 import styles from "./Navbar.module.css";
-import NavbarClient from "./NavbarClient";
-import NavbarHydrator from "./NavbarHydrator";
 import NavbarAccordionClient from "./NavbarAccordionClient";
-import ChangeClaimantLocation from "../ChangeClaimantLocation/ChangeClaimantLocation";
+import NavbarHydrator from "./NavbarHydrator";
 
 const NavbarRoutes = [
   {
@@ -20,10 +19,6 @@ const NavbarRoutes = [
   },
   {
     label: "Chat archive",
-    route: "#",
-  },
-  {
-    label: "Admin",
     route: "#",
   },
 ];
@@ -43,8 +38,12 @@ export default async function Navbar() {
       <div className={styles.menuWrapper}>
         <NavbarAccordionClient menuId="navbar-menu" />
 
-        <div id="navbar-menu" className={styles.navbarMenu} role="menu">
-          <nav className={styles.menuListNavbar}>
+        <div id="navbar-menu" className={styles.navbarMenu}>
+          <nav
+            className={styles.menuListNavbar}
+            role="navigation"
+            aria-label="Navigation Menu"
+          >
             {NavbarRoutes.map((r, i) => (
               <Link
                 key={r.route + i}
@@ -68,8 +67,6 @@ export default async function Navbar() {
           </nav>
         </div>
       </div>
-
-      <NavbarClient />
     </div>
   );
 }

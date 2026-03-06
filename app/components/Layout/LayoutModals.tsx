@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { useModal } from "@/app/providers";
 import { ClearChatModal, ReturnHomeModal } from "@/app/components";
+import { useModal } from "@/app/providers";
 import { clearSession } from "@/app/utils";
 
 export default function LayoutModals() {

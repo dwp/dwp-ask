@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import {
-  Checkbox,
-  H4,
   Button,
+  Checkbox,
+  FormGroup,
+  H4,
   InputError,
   LoadingBox,
-  FormGroup,
 } from "@/app/components";
 import { options } from "@/app/constants/FeedbackExpanded";
 import { sendFeedback } from "@/app/utils/api";

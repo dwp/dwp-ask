@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import styles from "./Spinner.module.css";
 
 interface SpinnerProps extends React.SVGProps<SVGSVGElement> {

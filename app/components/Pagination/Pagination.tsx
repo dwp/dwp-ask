@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
-import styles from "./Pagination.module.css";
+import type React from "react";
 import commonStyles from "@/app/common.module.css";
+import styles from "./Pagination.module.css";
 
 type PaginationProps = Readonly<{
   currentPage: number;

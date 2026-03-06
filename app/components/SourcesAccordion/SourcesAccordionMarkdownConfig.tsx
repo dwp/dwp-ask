@@ -1,5 +1,5 @@
 import { H3, H4, H5, H6 } from "@/app/components";
-import { SanitisedMarkdownProps } from "../SanitisedMarkdown/SanitisedMarkdown";
+import type { SanitisedMarkdownProps } from "../SanitisedMarkdown/SanitisedMarkdown";
 
 /**
  * Helper component so VoiceOver/screen readers can state the following text is a link e.g. "Link. <Display text for link>"

@@ -1,0 +1,15 @@
+.markdown_link {
+  text-decoration: underline;
+  font-size: 19px !important;
+  color: #1d70b8 !important;
+}
+
+.markdown_link:focus {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background-color: #ffdd00;
+}
+
+.markdownContainer {
+  font-size: 19px;
+}

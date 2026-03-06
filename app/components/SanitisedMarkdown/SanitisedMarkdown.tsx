@@ -1,8 +1,8 @@
 "use client";
 
-import { ComponentProps } from "react";
 import createDOMPurify from "dompurify";
 import Markdown from "markdown-to-jsx";
+import type { ComponentProps } from "react";
 
 type MarkdownProps = ComponentProps<typeof Markdown>;
 type MarkdownOptions = MarkdownProps["options"];

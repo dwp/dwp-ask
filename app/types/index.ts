@@ -1,8 +1,15 @@
-import React from "react";
-import { NextRequest, NextResponse } from "next/server";
-import { PageView } from "../enum";
+import type { NextRequest, NextResponse } from "next/server";
+import type React from "react";
+import { SanitisedMarkdownProps } from "../components/SanitisedMarkdown/SanitisedMarkdown";
+import type { PageView } from "../enum";
 
-type Citations = { title: string; url: string; chunks: string }[];
+type Citations = {
+  title: string;
+  url: string;
+  chunks: string;
+  highlights_url: string;
+  highlights_text: string;
+}[];
 
 type ErrorStateType = {
   invalidchar: boolean;
@@ -24,14 +31,24 @@ type QueryTextAreaProps = Readonly<{
   onKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
 }>;
 
+type QuestionFeedbackPayload = {
+  topic_label: string;
+  suggested_questions: string[];
+  preamble?: string;
+  postscript?: string;
+  out_of_scope?: boolean;
+};
+
 type ChatHistoryType = {
   question: string;
   answer: string;
-  default_response?: boolean;
   feedback_given?: boolean;
   citations?: Citations;
   type?: string;
   id?: number;
+  hasSetCountry?: boolean;
+  location?: string;
+  question_feedback?: QuestionFeedbackPayload | null;
 };
 
 type Feedback = {
@@ -53,12 +70,13 @@ type ChatViewType = {
 type QueryResponseType = {
   question: string;
   answer: string;
-  default_response?: boolean;
   citations?: Citations;
   error?: string;
   code?: number;
   type?: string;
   id?: number;
+  question_feedback?: QuestionFeedbackPayload | null;
+  answer_gen_enabled?: boolean;
 };
 
 type feedbackResponseType = {
@@ -135,12 +153,18 @@ type FeedbackApiResponse = {
   data: FeedbackResponseType[];
 };
 
+type StructuredFeedbackProps = {
+  copy?: string;
+  options: SanitisedMarkdownProps["options"];
+};
+
 export type {
   QueryTextAreaProps,
   ChatHistoryType,
   ErrorStateType,
   Citations,
   QueryResponseType,
+  QuestionFeedbackPayload,
   feedbackResponseType,
   MessagesResponseType,
   DateParts,
@@ -152,4 +176,5 @@ export type {
   FeedbackApiResponse,
   PageDescriptionProps,
   PayloadProps,
+  StructuredFeedbackProps,
 };

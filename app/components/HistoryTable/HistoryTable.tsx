@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
 import { useRouter } from "next/navigation";
-import { TableWrapper, TableRow, TableCell } from "@/app/components";
-import { MessagesResponseType } from "@/app/types";
-import Pagination from "../Pagination/Pagination";
+import type React from "react";
+import commonStyles from "@/app/common.module.css";
+import { TableCell, TableRow, TableWrapper } from "@/app/components";
+import type { MessagesResponseType } from "@/app/types";
 import { dateFormatForHistoryPage, truncate } from "@/app/utils/helpers";
 import { storeViewDetails } from "@/app/utils/storage/storage";
+import Pagination from "../Pagination/Pagination";
 import styles from "./HistoryTable.module.css";
-import commonStyles from "@/app/common.module.css";
 
 type HistoryTableProps = Readonly<{
   tableContent: MessagesResponseType[];

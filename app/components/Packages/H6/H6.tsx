@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 type H6Props = {
   children: React.ReactNode;

@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { useModal } from "@/app/providers";
-import { Button, Heading } from "@/app/components";
-import styles from "./Modal.module.css";
+import type React from "react";
+import { useEffect, useRef } from "react";
 import commonStyles from "@/app/common.module.css";
+import { Button, Heading } from "@/app/components";
+import { useModal } from "@/app/providers";
+import styles from "./Modal.module.css";
 
 type ModalProps = {
   heading: string;

@@ -1,4 +1,4 @@
-import { ChatViewType } from "@/app/types";
+import type { ChatViewType } from "@/app/types";
 import { catchError } from "@/app/utils";
 
 export default async function getPdfDownload(

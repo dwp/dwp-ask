@@ -1,5 +1,5 @@
 import Link from "../Link/Link";
-import { links, type FooterProps } from "./config";
+import { type FooterProps, links } from "./config";
 import styles from "./Footer.module.css";
 
 export default function Footer({ isModalOpen, pathname }: FooterProps) {

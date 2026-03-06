@@ -1,12 +1,12 @@
 "use client";
 
-import React, {
+import {
   createContext,
-  useContext,
-  useState,
-  ReactNode,
+  type ReactNode,
   useCallback,
+  useContext,
   useMemo,
+  useState,
 } from "react";
 
 type IsModalVisibleType = {

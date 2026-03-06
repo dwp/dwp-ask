@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import { TableWrapper, TableRow, TableCell } from "@/app/components";
-import { FeedbackResponseType } from "@/app/types";
+import { TableCell, TableRow, TableWrapper } from "@/app/components";
+import type { FeedbackResponseType } from "@/app/types";
 import { dateFormatForHistoryPage } from "@/app/utils/helpers";
 
 type FeedbackTableProps = Readonly<{

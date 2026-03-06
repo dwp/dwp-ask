@@ -1,5 +1,5 @@
-import React from "react";
-import { DateParts, PayloadProps } from "@/app/types";
+import type React from "react";
+import type { DateParts, PayloadProps } from "@/app/types";
 import { convertDateToISO } from "@/app/utils/helpers";
 
 const validateDateRange = (

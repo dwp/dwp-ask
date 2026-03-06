@@ -1,13 +1,14 @@
 "use client";
 
-import React, {
+import {
   createContext,
+  type ReactNode,
   useContext,
-  useState,
-  ReactNode,
   useEffect,
+  useState,
 } from "react";
-import { getLocation } from "@/app/utils";
+import { loadHistory } from "@/app/utils";
+import type { ChatHistoryType } from "../types";
 
 type LocationContextType = {
   location: string | null;
@@ -22,8 +23,22 @@ export const LocationProvider = ({ children }: { children: ReactNode }) => {
   const [location, setLocation] = useState<string | null>(null);
 
   useEffect(() => {
-    const loc = getLocation();
-    if (loc) setLocation(loc);
+    // Initialise location from chat history if available
+    try {
+      const chatHistory = loadHistory();
+
+      if (chatHistory && chatHistory.length > 0) {
+        const countrySetMessage = chatHistory.find(
+          (message: ChatHistoryType) => message.hasSetCountry,
+        );
+
+        if (countrySetMessage) {
+          setLocation(countrySetMessage.location || null);
+        }
+      }
+    } catch (error) {
+      console.error("LocationProvider - error initializing location:", error);
+    }
   }, []);
 
   return (

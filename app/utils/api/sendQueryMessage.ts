@@ -1,9 +1,9 @@
 import {
-  loadHistory,
   addHistory,
   calculateIndex,
-  updateHistory,
   catchError,
+  loadHistory,
+  updateHistory,
   // filterChatHistory,
 } from "@/app/utils";
 // import type { QueryResponseType } from "@/app/types";
@@ -13,7 +13,7 @@ import { returnPrototypeResponse } from "../prototypeResponses";
 export default async function sendQueryMessage(
   query: string,
   _location: string,
-  counter: number
+  counter: number,
 ) {
   // Define chat history object
   let chat_history = loadHistory();
@@ -31,7 +31,7 @@ export default async function sendQueryMessage(
     chat_history = loadHistory();
     const index = calculateIndex("query");
     const lastItem = chat_history[index];
-    await new Promise((res) => setTimeout(res, 5000));
+    await new Promise((res) => setTimeout(res, 4000));
     updateHistory({
       ...lastItem,
       answer: response.answer,

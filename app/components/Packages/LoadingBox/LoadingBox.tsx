@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import Spinner from "../Spinner/Spinner";
 import styles from "./LoadingBox.module.css";
 

@@ -1,26 +1,30 @@
 "use client";
 
-import React, { SetStateAction, useEffect } from "react";
-import Answer from "../Answer/Answer";
+import type React from "react";
+import { type SetStateAction, useEffect } from "react";
+import { useLocation } from "@/app/providers";
 import type { ChatHistoryType } from "@/app/types";
 import { addHistory, loadHistory } from "@/app/utils";
-import { useLocation } from "@/app/providers";
+import Answer from "../Answer/Answer";
 
 const message: ChatHistoryType = {
   question: "",
   answer: "Welcome to DWP Ask. To start, select where your claimant lives:",
   type: "chooseCountry",
-  default_response: false,
 };
 
 type ChooseCountryProps = {
   setLoadedChatHistory: React.Dispatch<SetStateAction<ChatHistoryType[]>>;
   setTyping: React.Dispatch<SetStateAction<boolean>>;
+  counter: number;
+  setCounter: React.Dispatch<SetStateAction<number>>;
 };
 
 export default function ChooseCountry({
   setLoadedChatHistory,
   setTyping,
+  counter,
+  setCounter,
 }: ChooseCountryProps) {
   const { location } = useLocation();
 
@@ -42,6 +46,8 @@ export default function ChooseCountry({
         message={message}
         setLoadedChatHistory={setLoadedChatHistory}
         setTyping={setTyping}
+        counter={counter}
+        setCounter={setCounter}
       />
     );
   }

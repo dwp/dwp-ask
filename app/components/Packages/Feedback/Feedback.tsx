@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { H4, Button } from "@/app/components";
-import styles from "./Feedback.module.css";
+import { Button, H4 } from "@/app/components";
 import { sendFeedback } from "@/app/utils/api";
+import styles from "./Feedback.module.css";
 
 type FeedbackType = "yes" | "no";
 

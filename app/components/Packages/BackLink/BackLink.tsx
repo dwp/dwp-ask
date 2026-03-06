@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { forwardRef } from "react";
 import styles from "./BackLink.module.css";
 
 interface BackLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -14,7 +14,7 @@ interface BackLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string;
 }
 
-const BackLink = React.forwardRef<HTMLAnchorElement, BackLinkProps>(
+const BackLink = forwardRef<HTMLAnchorElement, BackLinkProps>(
   (
     {
       tabIndex,

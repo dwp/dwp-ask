@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { Typing, QueryTextArea } from "@/app/components";
-import { ChatHistoryType, ErrorStateType } from "@/app/types";
-import styles from "./ChatInput.module.css";
-import { getLocation } from "@/app/utils";
+import React, {
+  type SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { QueryTextArea, Typing } from "@/app/components";
 import { useLocation } from "@/app/providers";
+import { ChatHistoryType, ErrorStateType } from "@/app/types";
 import sendQueryMessage from "@/app/utils/api/sendQueryMessage";
+import styles from "./ChatInput.module.css";
 
 const initialErrorState = {
   invalidchar: false,
@@ -21,30 +25,33 @@ export default function ChatInput({
   typing,
   setTyping,
   isModalOpen,
+  counter,
+  setCounter,
 }: {
   loadedChatHistory: ChatHistoryType[];
   setLoadedChatHistory: Function;
   typing: boolean;
   setTyping: Function;
   isModalOpen: boolean;
+  counter: number;
+  setCounter: React.Dispatch<SetStateAction<number>>;
 }) {
   const [query, setQuery] = useState("");
   const [error, setError] = useState<ErrorStateType>(initialErrorState);
   const { location } = useLocation();
   const [localLocation, setLocalLocation] = useState("");
-  const [counter, setCounter] = useState(1);
 
   const isError = Object.values(error).includes(true);
   const onChange = (
     event?: React.ChangeEvent<HTMLTextAreaElement> | null,
-    plainText?: string | null
+    plainText?: string | null,
   ) => {
     setQuery(
       plainText
         ? plainText.replaceAll("[text here]", "")
         : event
           ? event.target.value
-          : ""
+          : "",
     );
     setError((state) => ({ ...state, blank: false }));
   };
@@ -56,8 +63,7 @@ export default function ChatInput({
   }, [loadedChatHistory, location]);
 
   useEffect(() => {
-    const locationFromStorage = getLocation();
-    setLocalLocation(locationFromStorage || location || "");
+    setLocalLocation(location || "");
   }, [location]);
 
   const sendQueryAndClear = useCallback(() => {
@@ -99,7 +105,7 @@ export default function ChatInput({
   ]);
 
   const submitQueryEnter = (
-    event: React.KeyboardEvent<HTMLTextAreaElement>
+    event: React.KeyboardEvent<HTMLTextAreaElement>,
   ) => {
     if (event.key === "Enter" && event.shiftKey == false) {
       event.preventDefault();

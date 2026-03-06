@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "../Packages/Link/Link";
 import { useResponsive } from "@/app/providers";
+import Link from "../Packages/Link/Link";
 
 export default function SkipLink() {
   const { isSmallScreen } = useResponsive();
