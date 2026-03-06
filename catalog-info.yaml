@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: prototype.interface.dwp.ask
-  title: DWP-ASK
+  title: DWP-Ask
   description: |
     A prototype for user research.
 
