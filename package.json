@@ -10,15 +10,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
-    {
-      "scripts": {
-        "heroku-prebuild": "rm -f package-lock.json"
-      }
-    }
   },
   "dependencies": {
     "autoprefixer": "10.4.24",
-    "dompurify": "3.3.2",
+    "dompurify": "^3.3.2",
     "govuk-frontend": "5.14.0",
     "markdown-to-jsx": "9.6.1",
     "next": "16.1.6",

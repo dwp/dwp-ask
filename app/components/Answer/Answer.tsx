@@ -62,6 +62,7 @@ export default function Answer({
   const questionFeedback = message.question_feedback;
   const shouldUseQuestionFeedback =
     Boolean(questionFeedback) && !questionFeedback?.out_of_scope;
+
   const suggestionQuestions = shouldUseQuestionFeedback
     ? (questionFeedback?.suggested_questions ?? [])
     : [];
@@ -70,6 +71,7 @@ export default function Answer({
     suggestionQuestions.length > 0 &&
     !isView &&
     !isError;
+
   const hasStructuredQuestionFeedback =
     shouldShowSuggestionButtons &&
     (Boolean(questionFeedback?.preamble) ||
@@ -93,6 +95,7 @@ export default function Answer({
         location,
         counter,
       );
+      setCounter((prev) => prev + 1);
       setLoadedChatHistory(history);
     } catch (error) {
       console.error("Failed to submit suggested question:", error);

@@ -38,6 +38,7 @@ export default async function sendQueryMessage(
       citations: response.citations || [],
       default_response: response.default_response ?? false,
       id: response.id ?? null,
+      question_feedback: response.question_feedback ?? null,
     });
   } catch (error: any) {
     console.log(error);

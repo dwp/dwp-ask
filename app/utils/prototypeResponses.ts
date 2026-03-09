@@ -1,4 +1,122 @@
-export const q2Response = `### Eligibility Criteria for a Budgeting Advance
+export const q1Response = `Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Changing lead carer for a child**, which might help you.\n\n- What is the process for changing the lead carer for a child in a Universal Credit claim?\n- How does a claimant nominate a new lead carer for a child in a shared custody arrangement?\n- What happens if two parents cannot agree on who should be the lead carer for a child?`;
+
+export const q2Response = `### Eligibility Criteria for Universal Credit for Claimants Under 18
+
+#### General Rules
+- Claimants under 18 are not usually entitled to Universal Credit.
+- There are specific exceptions where a young person under 18 may qualify.
+
+#### Exceptions for Eligibility
+A young person under 18 may be eligible for Universal Credit if they meet at least one of the following conditions:
+
+1. **Health Conditions or Disabilities**
+   - They were receiving Employment and Support Allowance.
+   - They have limited capability for work.
+   - They are in education and receive Disability Living Allowance or Personal Independence Payment.
+
+2. **Health-Related Evidence**
+   - They are not in full-time education.
+   - They provide medical evidence of a health condition or disability.
+   - They are waiting for a Work Capability Assessment.
+
+3. **Pregnancy**
+   - They are pregnant and within 11 weeks or less of the expected week of childbirth.
+   - They are not in full-time advanced or non-advanced education.
+
+4. **Post-Pregnancy**
+   - They were pregnant and have given birth in the last 15 weeks.
+   - They no longer have the child due to reasons such as:
+     - The baby was stillborn.
+     - The baby has passed away.
+     - The baby is now in the care of another person.
+
+5. **Without Parental Support**
+   - They are not living with their parents and are without parental support.
+
+6. **Responsibility for a Child**
+   - They are responsible for a child.
+
+7. **Caring Responsibilities**
+   - They have regular and substantial caring responsibilities for a severely disabled person.
+   - They are not in full-time education.
+
+8. **Part of a Couple**
+   - They are part of a couple where the other person is responsible for a child.
+   - The other person must meet the basic conditions of entitlement for Universal Credit.
+
+#### Additional Considerations
+- Claimants under 18 are expected to accept their Claimant Commitment, similar to adult claimants.
+- They will be placed in a Labour Market regime based on their personal circumstances and capabilities.
+- If the claimant is in full-time non-advanced education (up to A Level or equivalent) and has no parental support, they may qualify for Universal Credit until they turn 21 or complete their course if they turn 21 during the course.
+
+#### Important Notes
+- In England, 16 and 17-year-olds are expected to be in education or training. If they are not, they must meet the eligibility conditions to qualify for Universal Credit.
+- If a 16 or 17-year-old claims Universal Credit, any Child Benefit being paid for them will stop.`;
+
+export const q5Response = `Sorry, I cannot help with questions about **HR policies for DWP staff**.\n\nFor information on policies for staff, visit [Human Resources (opens in a new tab)](https://intranet.dwp.gov.uk/section/working-dwp/human-resources).\n\nUse DWP Ask to help you find Universal Learning guidance.`;
+
+export function returnPrototypeResponse(counter: number) {
+  const q1 = {
+    answer: q1Response,
+    citations: [],
+    id: 314,
+    answer_gen_enabled: true,
+    question_feedback: {
+      topic_label: "Changing lead carer for a child",
+      preamble:
+        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Universal Credit for under 18s**, which might help you.",
+      postscript: null,
+      out_of_scope: false,
+      suggested_questions: [
+        "What are the eligibility criteria for Universal Credit for claimants under 18?",
+        "Can a 16 or 17-year-old claim Universal Credit if they are estranged from their parents?",
+        "What support is available for under 18s claiming Universal Credit in England?",
+      ],
+    },
+  };
+
+  const q2 = {
+    answer: q2Response,
+    citations: [
+      {
+        title: "Under 18s: Guidance",
+        highlights_url:
+          "https://intranet.dwp.gov.uk/policy/under-18s-guidance#:~:text=another,other%20person%20is%20responsible%20for%20a%20child%2C%20but",
+        chunks: "",
+      },
+      {
+        title: "Eligibility for Universal Credit: Guidance",
+        highlights_url:
+          "https://intranet.dwp.gov.uk/policy/eligibility-universal-credit-guidance#:~:text=To%20be%20eligible%20for%20Universal%20Credit%20a%20claimant,the%20GB%20residency%20requirements%20-%20see",
+        chunks: "",
+      },
+    ],
+    id: 2,
+    answer_gen_enabled: true,
+    question_feedback: null,
+  };
+
+  const q3 = {
+    answer: "blank",
+    citations: [],
+    id: 314,
+    answer_gen_enabled: true,
+    question_feedback: {
+      topic_label: "Budgeting Advances",
+      preamble:
+        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Budgeting Advances**, which might help you.",
+      postscript: null,
+      out_of_scope: false,
+      suggested_questions: [
+        "How long must a claimant have been on Universal Credit before they can get a Budgeting Advance?",
+        "What is the maximum Budgeting Advance amount?",
+        "What expenses can a Budgeting Advance be used for?",
+      ],
+    },
+  };
+
+  const q4 = {
+    answer: `### Eligibility Criteria for a Budgeting Advance
 
 #### General Requirements
 
@@ -41,53 +159,8 @@ export const q2Response = `### Eligibility Criteria for a Budgeting Advance
 
 #### Glossary
 
-- Budgeting Advance: A loan provided to help with emergency household costs, such as buying furniture or paying for unexpected expenses, which is repaid through deductions from Universal Credit payments.`;
-
-export const q3Response = `### Should a Claimant Have an Appointee?
-
-#### Eligibility for an Appointee
-
-A claimant may need an appointee if:
-
-- They are incapable of managing their benefit affairs due to mental incapacity or severe physical disability.
-- They do not already have someone with higher authority, such as a court-appointed deputy or someone with Power of Attorney, acting on their behalf.
-
-A claimant does not need an appointee if:
-
-- They are simply unable to collect their benefits but can otherwise manage their own affairs.
-- They no longer wish to manage their own affairs but are still capable of doing so.
-- They can manage their own affairs but need someone they trust to collect their benefits for them. In this case, they can arrange for someone to do this without appointing an appointee.
-
-#### Process for Appointing an Appointee
-
-- The claimant must be visited to confirm that they are eligible and require an appointee.
-- The prospective appointee must be interviewed to confirm their suitability and to explain their role and responsibilities.
-- A BF56 form is completed with the prospective appointee, including evidence showing the claimant’s incapacity to manage their own affairs.
-- If the appointee is deemed suitable, a BF57 form is issued to confirm the appointment.
-
-#### Responsibilities of an Appointee
-
-- The appointee becomes responsible for managing the claimant’s Universal Credit claim, including receiving payments into their own bank account on behalf of the claimant.
-
-#### When an Appointee is No Longer Required
-
-- If the claimant states they no longer need an appointee and can manage their claim independently, a review must be conducted.
-- The existing appointee must be contacted for confirmation.
-- If the appointee is no longer required, the claimant will take full responsibility for their claim, including receiving payments into their own bank account.
-
-#### Important Notes
-
-- An appointee is not appropriate for claimants who are capable of managing their own affairs but face logistical issues like accessing a bank.
-- The decision to appoint an appointee must be carefully considered and documented.
-
-#### Glossary
-
-- BF56: Form used to document the appointment process and evidence of the claimant’s incapacity.
-- BF57: Form issued to confirm the appointment of an appointee.`;
-
-export function returnPrototypeResponse(counter: number) {
-  const q2 = {
-    answer: q2Response,
+- Budgeting Advance: A loan provided to help with emergency household costs, such as buying furniture or paying for unexpected expenses, which is repaid through deductions from Universal Credit payments.
+`,
     citations: [
       {
         title: "Advances: Budgeting Advance: Guidance",
@@ -95,39 +168,26 @@ export function returnPrototypeResponse(counter: number) {
         chunks: "",
       },
     ],
-    default_response: false,
-    id: 2,
-  };
-  const q3 = {
-    answer: q3Response,
-    citations: [
-      {
-        title:
-          "Appointees, Personal Acting Bodies and Corporate Acting Bodies: Guidance",
-        url: "https://intranet.dwp.gov.uk/policy/appointees-personal-acting-bodies-and-corporate-acting-bodies-guidance#:~:text=deputy%20or%20a%20Power%20of,able%20to%20arrange%20for%20a%20person%20they%20know%20and",
-        chunks: "",
-      },
-      {
-        title: "New claims: Guidance",
-        url: "https://intranet.dwp.gov.uk/policy/new-claims-guidance#:~:text=If%20the%20claimant%20has%20an%20appointee%2C%20the%20appointee,in%20the%20Appointees%2C%20Personal%20Acting%20Bodies",
-        chunks: "",
-      },
-    ],
-    default_response: false,
-    id: 3,
+    id: 316,
+    answer_gen_enabled: true,
+    question_feedback: null,
   };
 
-  const _q1 = {
-    answer:
-      "Apologies, I cannot answer your question. Please rephrase or provide more details. If this is not a guidance related question, please refer to resources under Universal Learning.",
+  const q5 = {
+    answer: q5Response,
     citations: [],
-    default_response: true,
-    error: true,
-    type: "error",
-    id: 1,
+    id: 3,
+    answer_gen_enabled: true,
+    question_feedback: {
+      topic_label: "HR policies for DWP staff",
+      preamble: null,
+      postscript: null,
+      out_of_scope: true,
+      suggested_questions: [],
+    },
   };
 
-  const responses = [q2, q3];
+  const responses = [q1, q2, q3, q4, q5];
   const response = responses[counter - 1];
 
   return response;
