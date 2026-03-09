@@ -178,11 +178,7 @@ export default function Answer({
             className={styles.questionFeedbackButtons}
             data-testid="question-feedback-buttons"
           >
-            {[
-              "What are the eligibility criteria for Universal Credit for claimants under 18 with very long text that should definitely overflow?",
-              "Can a 16 or 17-year-old claim Universal Credit if they are estranged from their parents and have nowhere else to live?",
-              "What support is available for under 18s claiming Universal Credit in England and Wales?",
-            ].map((question) => (
+            {suggestionQuestions.map((question) => (
               <Card
                 key={question}
                 text={question}
@@ -247,3 +243,4 @@ export default function Answer({
     </article>
   );
 }
+ 
