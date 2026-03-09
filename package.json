@@ -10,11 +10,6 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
-    {
-      "scripts": {
-        "heroku-prebuild": "rm -f package-lock.json"
-      }
-    }
   },
   "dependencies": {
     "autoprefixer": "10.4.24",
