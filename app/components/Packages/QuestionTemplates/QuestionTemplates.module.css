@@ -32,6 +32,15 @@
   align-content: center;
   justify-content: center;
   margin: 0 !important;
+
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.4;
+  height: auto;
+  min-height: fit-content;
+  min-width: 0;
 }
 
 .templateCard div {

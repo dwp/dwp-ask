@@ -1,4 +1,4 @@
-export const q1Response = `Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Changing lead carer for a child**, which might help you.\n\n- What is the process for changing the lead carer for a child in a Universal Credit claim?\n- How does a claimant nominate a new lead carer for a child in a shared custody arrangement?\n- What happens if two parents cannot agree on who should be the lead carer for a child?`;
+export const q1Response = `Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Changing lead carer for a child**, which might help you.\n\n- What is the process for changing the lead carer for a child in a Universal Credit claim?\n- How does a claimant nominate a new lead carer for a child in a shared custody arrangement?\n- What happens if two parents cannot agree on who should be the lead carer for a child?`;
 
 export const q2Response = `### Eligibility Criteria for Universal Credit for Claimants Under 18
 
@@ -64,13 +64,13 @@ export function returnPrototypeResponse(counter: number) {
     question_feedback: {
       topic_label: "Changing lead carer for a child",
       preamble:
-        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Universal Credit for under 18s**, which might help you.",
+        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Universal Credit for under 18s**, which might help you.",
       postscript: null,
       out_of_scope: false,
       suggested_questions: [
-        "What are the eligibility criteria for Universal Credit for claimants under 18?",
-        "Can a 16 or 17-year-old claim Universal Credit if they are estranged from their parents?",
-        "What support is available for under 18s claiming Universal Credit in England?",
+        "What are the eligibility criteria for Universal Credit for claimants under 18?",
+        "Can a 16 or 17-year-old claim Universal Credit if they are estranged from their parents?",
+        "What support is available for under 18s claiming Universal Credit in England?",
       ],
     },
   };
@@ -104,7 +104,7 @@ export function returnPrototypeResponse(counter: number) {
     question_feedback: {
       topic_label: "Budgeting Advances",
       preamble:
-        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Budgeting Advances**, which might help you.",
+        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Budgeting Advances**, which might help you.",
       postscript: null,
       out_of_scope: false,
       suggested_questions: [

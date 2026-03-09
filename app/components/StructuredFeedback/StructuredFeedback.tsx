@@ -4,7 +4,7 @@ import { openQuestionTemplatesPanel } from "../Packages/QuestionTemplates/questi
 import SanitisedMarkdown from "../SanitisedMarkdown/SanitisedMarkdown";
 import styles from "./StructuredFeedback.module.css";
 
-const TEMPLATE_TRIGGER_REGEX = /a template/gi;
+const TEMPLATE_TRIGGER_REGEX = /a question template/gi;
 
 export default function StructuredFeedback({
   copy,
