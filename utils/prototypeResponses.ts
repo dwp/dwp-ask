@@ -1,6 +1,6 @@
 export const q1Response = `Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Changing lead carer for a child**, which might help you.\n\n- What is the process for changing the lead carer for a child in a Universal Credit claim?\n- How does a claimant nominate a new lead carer for a child in a shared custody arrangement?\n- What happens if two parents cannot agree on who should be the lead carer for a child?`;
 
-export const q2Response = `### Eligibility Criteria for Universal Credit for Claimants Under 18
+export const q4Response = `### Eligibility Criteria for Universal Credit for Claimants Under 18
 
 #### General Rules
 - Claimants under 18 are not usually entitled to Universal Credit.
@@ -76,46 +76,6 @@ export function returnPrototypeResponse(counter: number) {
   };
 
   const q2 = {
-    answer: q2Response,
-    citations: [
-      {
-        title: "Under 18s: Guidance",
-        highlights_url:
-          "https://intranet.dwp.gov.uk/policy/under-18s-guidance#:~:text=another,other%20person%20is%20responsible%20for%20a%20child%2C%20but",
-        chunks: "",
-      },
-      {
-        title: "Eligibility for Universal Credit: Guidance",
-        highlights_url:
-          "https://intranet.dwp.gov.uk/policy/eligibility-universal-credit-guidance#:~:text=To%20be%20eligible%20for%20Universal%20Credit%20a%20claimant,the%20GB%20residency%20requirements%20-%20see",
-        chunks: "",
-      },
-    ],
-    id: 2,
-    answer_gen_enabled: true,
-    question_feedback: null,
-  };
-
-  const q3 = {
-    answer: "blank",
-    citations: [],
-    id: 314,
-    answer_gen_enabled: true,
-    question_feedback: {
-      topic_label: "Budgeting Advances",
-      preamble:
-        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Budgeting Advances**, which might help you.",
-      postscript: null,
-      out_of_scope: false,
-      suggested_questions: [
-        "How long must a claimant have been on Universal Credit before they can get a Budgeting Advance?",
-        "What is the maximum Budgeting Advance amount?",
-        "What expenses can a Budgeting Advance be used for?",
-      ],
-    },
-  };
-
-  const q4 = {
     answer: `### Eligibility Criteria for a Budgeting Advance
 
 #### General Requirements
@@ -169,6 +129,46 @@ export function returnPrototypeResponse(counter: number) {
       },
     ],
     id: 316,
+    answer_gen_enabled: true,
+    question_feedback: null,
+  };
+
+  const q3 = {
+    answer: "blank",
+    citations: [],
+    id: 314,
+    answer_gen_enabled: true,
+    question_feedback: {
+      topic_label: "Budgeting Advances",
+      preamble:
+        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Budgeting Advances**, which might help you.",
+      postscript: null,
+      out_of_scope: false,
+      suggested_questions: [
+        "How long must a claimant have been on Universal Credit before they can get a Budgeting Advance?",
+        "What is the maximum Budgeting Advance amount?",
+        "What expenses can a Budgeting Advance be used for?",
+      ],
+    },
+  };
+
+  const q4 = {
+    answer: q4Response,
+    citations: [
+      {
+        title: "Under 18s: Guidance",
+        highlights_url:
+          "https://intranet.dwp.gov.uk/policy/under-18s-guidance#:~:text=another,other%20person%20is%20responsible%20for%20a%20child%2C%20but",
+        chunks: "",
+      },
+      {
+        title: "Eligibility for Universal Credit: Guidance",
+        highlights_url:
+          "https://intranet.dwp.gov.uk/policy/eligibility-universal-credit-guidance#:~:text=To%20be%20eligible%20for%20Universal%20Credit%20a%20claimant,the%20GB%20residency%20requirements%20-%20see",
+        chunks: "",
+      },
+    ],
+    id: 2,
     answer_gen_enabled: true,
     question_feedback: null,
   };

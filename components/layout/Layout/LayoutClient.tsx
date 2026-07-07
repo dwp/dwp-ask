@@ -12,6 +12,7 @@ const freeFlowPages = [
   "/chat/view-details",
   "/admin",
   "/admin/view-details",
+  "/agreement",
 ];
 
 export default function LayoutClient() {
