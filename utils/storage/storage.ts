@@ -104,7 +104,7 @@ const confirmChangeLocation = (location: LocationType) => {
   if (LOCATIONS.includes(location)) {
     const newItem = {
       question: `${location}.`,
-      answer: `Okay, your claimant is in ${location}. Enter your question.`,
+      answer: `Okay, your claimant is in ${location}. Enter your question or click 'Help me ask' for help with starting your question.`,
       type: "chooseCountry",
       hasSetCountry: true,
       location,
