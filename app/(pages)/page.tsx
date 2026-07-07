@@ -2,8 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, H1, Main, Paragraph } from "../components";
-import "./test.css";
+import { Button, Main, Paragraph, Title } from "@/components";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -38,7 +37,7 @@ export default function LandingPage() {
 
   return (
     <Main className="test-page-wrapper">
-      <H1>Start the test</H1>
+      <Title level="h1">Start the test</Title>
       <Paragraph>
         This prototype has been created for research purposes and is not the
         full live tool.

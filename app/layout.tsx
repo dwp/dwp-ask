@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Layout } from "./components";
-import Providers from "./providers/Providers";
+import { Layout } from "@/components";
+import Providers from "@/providers/Providers";
 import "./globals.css";
 import "./index.scss";
 

@@ -1,4 +1,4 @@
-import { Analytics } from "../../components";
+import { Analytics } from "@/components";
 import styles from "./Chat.module.css";
 import ChatWindow from "./chat-helpers/ChatWindow";
 

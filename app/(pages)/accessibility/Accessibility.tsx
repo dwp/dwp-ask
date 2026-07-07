@@ -1,19 +1,25 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Fragment } from "react";
 import {
   Analytics,
   BackLink,
-  H3,
-  Heading,
   LabelText,
   Link,
   Main,
   Paragraph,
   SectionBreak,
+  Title,
   UnorderedList,
   UnorderedListItem,
-} from "@/app/components";
+} from "@/components";
+import {
+  INACCESSIBILE_EXAMPLES,
+  PREPARATION_CONSTANTS,
+  SUPPORT_EMAIL,
+  USABILITY_EXAMPLES,
+} from "@/constants/Accessibilty";
 import styles from "./Accessibility.module.css";
 
 export default function Accessibility() {
@@ -24,30 +30,30 @@ export default function Accessibility() {
       <Analytics />
       <BackLink
         data-testid="accessibility-statement-home-link"
-        aria-label="Home"
+        aria-label="Back"
         tabIndex={0}
-        onClick={() => router.push("/")}
+        onClick={() => router.push("/chat")}
       >
-        <span className={styles.accessibilityBacklink}>Home</span>
+        <span className={styles.accessibilityBacklink}>Back</span>
       </BackLink>
       <SectionBreak visible={false} level="m" />
-      <Heading data-testid="accessibility-statement-heading">
+      <Title level="h1" data-testid="accessibility-statement-heading">
         Accessibility statement for DWP Ask
-      </Heading>
+      </Title>
       <section id="main" tabIndex={-1}>
         {" "}
         <LabelText>
           This accessibility statement applies to the DWP Ask application. It
           does not cover other DWP tools or services.
           <Paragraph>
-            This is DWP Ask’s own accessibility page, with details of how
+            This is DWP Ask&apos;s own accessibility page, with details of how
             accessible the service is and how to report a problem.
           </Paragraph>
         </LabelText>
         <br></br>
         <LabelText>
-          This website is run by <strong>DWP’s AI & Innovation Function</strong>
-          .
+          This website is run by{" "}
+          <strong>DWP&apos;s AI & Innovation Function</strong>.
         </LabelText>
         <br></br>
         <LabelText>
@@ -56,32 +62,13 @@ export default function Accessibility() {
         </LabelText>
         <br></br>
         <UnorderedList>
-          <UnorderedListItem>
-            Change colours, contrast levels and fonts using browser or device
-            settings
-          </UnorderedListItem>
-          <UnorderedListItem>
-            Zoom in up to 200% without the text spilling off the screen
-          </UnorderedListItem>
-          <UnorderedListItem>
-            Navigate most of the application using a keyboard or speech
-            recognition software
-          </UnorderedListItem>
-          <UnorderedListItem>
-            Listen to most of the application using a screen reader (including
-            recent versions of JAWS, NVDA and VoiceOver)
-          </UnorderedListItem>
-          <UnorderedListItem>
-            Change the device orientation from horizontal to vertical without
-            making it more difficult to view the content
-          </UnorderedListItem>
-          <UnorderedListItem>
-            Change text size without some of the content overlapping
-          </UnorderedListItem>
+          {USABILITY_EXAMPLES.map((example, index) => (
+            <UnorderedListItem key={index}>{example}</UnorderedListItem>
+          ))}
         </UnorderedList>
         <br />
         <LabelText>
-          We’ve also made the application text as simple as possible to
+          We&apos;ve also made the application text as simple as possible to
           understand.
         </LabelText>
         <br />
@@ -97,72 +84,56 @@ export default function Accessibility() {
           disability.
         </LabelText>
         <SectionBreak visible={false} level="m" />
-        <H3>How accessible this tool is</H3>
+        <Title level="h3">How accessible this tool is</Title>
         <LabelText>
           We know some parts of this website are not fully accessible, for
           example:
         </LabelText>
         <br />
         <UnorderedList>
-          <UnorderedListItem>
-            When using Voice Control software, you may encounter difficulties
-            scrolling the chat and new content may not be tagged with numbers
-            automatically. This is due to an issue with the Voice Control
-            software.
-          </UnorderedListItem>
-          <UnorderedList>
-            <UnorderedListItem>
-              To overcome this issue, users can:
-              <UnorderedList>
-                <UnorderedListItem>
-                  Say “go to next field” until the focus is set to the next
-                  element to update the voice control tags
-                </UnorderedListItem>
-                <UnorderedListItem>
-                  Say “go to next field” until the focus is set to the
-                  scrollable container so that the chat can be scrolled using
-                  Voice Control
-                </UnorderedListItem>
-              </UnorderedList>
-            </UnorderedListItem>
-          </UnorderedList>
-          <UnorderedListItem>
-            There’s a limit to how far you can scroll through the chat and view
-            the messages when zooming to 400%.
-          </UnorderedListItem>
-          <UnorderedListItem>
-            On the Chat History screen, users of assistive technologies may find
-            it difficult to identify the record they are looking for. Users can
-            minimise the number of returned records in the table to search
-            through by setting the date filter to a small range. This will be an
-            area for future improvement of DWP Ask.
-          </UnorderedListItem>
+          {INACCESSIBILE_EXAMPLES.map((example, index) => (
+            <Fragment key={index}>
+              <UnorderedListItem>{example.description}</UnorderedListItem>
+              {example.solutions && (
+                <UnorderedList>
+                  <UnorderedListItem>
+                    To overcome this issue, users can:
+                  </UnorderedListItem>
+                  <UnorderedList>
+                    {example.solutions.map((solution, si) => (
+                      <UnorderedListItem key={si}>{solution}</UnorderedListItem>
+                    ))}
+                  </UnorderedList>
+                </UnorderedList>
+              )}
+            </Fragment>
+          ))}
         </UnorderedList>
         <SectionBreak visible={false} level="m" />
         <br />
-        <H3>Feedback and contact information</H3>
+        <Title level="h3">Feedback and contact information</Title>
         <LabelText>
-          If you find any problems not listed on this page or think we’re not
-          meeting accessibility requirements, contact:{" "}
+          If you find any problems not listed on this page or think we&apos;re
+          not meeting accessibility requirements, contact:{" "}
           <Link
-            href="mailto:digitalgroup.cassitgn@DWP.GOV.UK"
+            href={`mailto:${SUPPORT_EMAIL}`}
             className={`${styles.noUnderline} ${styles.link}`}
             target="_blank"
           >
-            digitalgroup.cassitgn@DWP.GOV.UK
+            {SUPPORT_EMAIL}
           </Link>
           .
         </LabelText>
         <SectionBreak visible={false} level="m" />
-        <H3>Enforcement procedure</H3>
+        <Title level="h3">Enforcement procedure</Title>
         <Paragraph>
           The Equality and Human Rights Commission (EHRC) is responsible for
           enforcing the Public Sector Bodies (Websites and Mobile Applications)
-          (No. 2) Accessibility Regulations 2018 (the ‘accessibility
-          regulations’).
+          (No. 2) Accessibility Regulations 2018 (the &apos;accessibility
+          regulations&apos;).
         </Paragraph>
         <LabelText>
-          If you’re not happy with how we respond to your complaint,{" "}
+          If you&apos;re not happy with how we respond to your complaint,{" "}
           <Link
             href="https://www.equalityadvisoryservice.com/"
             className={`${styles.underline} ${styles.link}`}
@@ -174,13 +145,15 @@ export default function Accessibility() {
         </LabelText>
         <br />
         <br />
-        <H3>Technical information about this website’s accessibility</H3>
+        <Title level="h3">
+          Technical information about this website&apos;s accessibility
+        </Title>
         <Paragraph>
           DWP is committed to making its website accessible, in accordance with
           the Public Sector Bodies (Websites and Mobile Applications) (No. 2)
           Accessibility Regulations 2018.
         </Paragraph>
-        <H3>Compliance status</H3>
+        <Title level="h3">Compliance status</Title>
         <LabelText>
           This website is fully compliant with the{" "}
           <Link
@@ -193,9 +166,10 @@ export default function Accessibility() {
           AA standard.
         </LabelText>
         <SectionBreak visible={false} level="m" />
-        <H3>
-          Content that’s not within the scope of the accessibility regulations
-        </H3>
+        <Title level="h3">
+          Content that&apos;s not within the scope of the accessibility
+          regulations
+        </Title>
         <Paragraph>
           There are a handful of documents which contain embedded videos. In
           these cases, given the complex technical process to search on videos,
@@ -211,15 +185,15 @@ export default function Accessibility() {
           videos.
         </Paragraph>
         <SectionBreak visible={false} level="m" />
-        <H3>Preparation of this accessibility statement</H3>
+        <Title level="h3">Preparation of this accessibility statement</Title>
         <LabelText>
-          This statement was prepared on 25 September 2024. It was last reviewed
-          on 27 January 2026.
+          This statement was prepared on {PREPARATION_CONSTANTS.preparedDate}.
+          It was last reviewed on {PREPARATION_CONSTANTS.lastReviewedDate}.
         </LabelText>
         <br />
         <LabelText>
-          This website was last tested on 27 January 2026 against the WCAG 2.2
-          AA standard.
+          This website was last tested on {PREPARATION_CONSTANTS.lastTestedDate}{" "}
+          against the WCAG 2.2 AA standard.
         </LabelText>
         <br />
         <LabelText>

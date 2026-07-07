@@ -1,0 +1,28 @@
+.answer {
+  background-color: #f3f2ef;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 19px !important;
+}
+
+.message_label {
+  margin: 0 !important;
+  margin-bottom: 10px !important;
+  font-weight: bold !important;
+}
+
+.message_label p {
+  font-weight: 700;
+  font-size: 19px;
+}
+
+.sourceLinksContainer {
+  margin-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.questionFeedbackPostscript {
+  margin-top: 12px;
+}

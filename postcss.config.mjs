@@ -1,8 +1,6 @@
 const config = {
   plugins: {
-    autoprefixer: {
-      flexbox: "no-2009",
-    },
+    "@tailwindcss/postcss": {},
   },
 };
 

@@ -1,5 +1,6 @@
 import "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
+import { type MarkdownToJSX } from "markdown-to-jsx";
 import React from "react";
 import { expect, vi } from "vitest";
 
@@ -10,19 +11,24 @@ vi.mock("markdown-to-jsx", () => {
   const renderLink = (
     href: string,
     label: string,
-    options: any,
+    options: MarkdownToJSX.Options | undefined,
     key: number,
   ) => {
     const override = options?.overrides?.a;
     const baseProps = { href };
 
-    if (override?.component) {
+    if (
+      override &&
+      typeof override === "object" &&
+      "component" in override &&
+      override.component
+    ) {
       const Component = override.component;
       return React.createElement(
         Component,
         {
           key: `mock-markdown-link-${key}`,
-          ...(override?.props ?? {}),
+          ...("props" in override ? (override.props ?? {}) : {}),
           ...baseProps,
         },
         label,
@@ -33,14 +39,19 @@ vi.mock("markdown-to-jsx", () => {
       "a",
       {
         key: `mock-markdown-link-${key}`,
-        ...(override?.props ?? {}),
+        ...(override && typeof override === "object" && "props" in override
+          ? (override.props ?? {})
+          : {}),
         ...baseProps,
       },
       label,
     );
   };
 
-  const renderMarkdown = (content: string, options: any) => {
+  const renderMarkdown = (
+    content: string,
+    options: MarkdownToJSX.Options | undefined,
+  ) => {
     const nodes: React.ReactNode[] = [];
     let lastIndex = 0;
     let linkIndex = 0;
@@ -94,7 +105,7 @@ vi.mock("markdown-to-jsx", () => {
     "data-testid": dataTestId,
   }: {
     children?: React.ReactNode;
-    options?: any;
+    options?: MarkdownToJSX.Options;
     className?: string;
     "data-testid"?: string;
   }) => {

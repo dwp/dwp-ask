@@ -1,0 +1,10 @@
+.ai_disclaimer_span {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ai_disclaimer {
+  font-size: 19px;
+}

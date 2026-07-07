@@ -1,4 +1,4 @@
-import { AccessibilityStatementMetadata } from "@/app/constants/PageMetadata";
+import { AccessibilityStatementMetadata } from "@/constants/PageMetadata";
 import Accessibility from "./Accessibility";
 
 export const metadata = AccessibilityStatementMetadata;

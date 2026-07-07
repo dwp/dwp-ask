@@ -1,13 +1,14 @@
-FROM node:22.22.0-alpine@sha256:e4bf2a82ad0a4037d28035ae71529873c069b13eb0455466ae0bc13363826e34 AS dwpbase
+FROM <redacted>/docker/node:22.22.2-alpine@sha256:8ea2348b068a9544dae7317b4f3aafcdc032df1647bb7d768a05a5cad1a7683f AS dwpbase
 
 FROM dwpbase AS deps
 
 # Needed for building within the DWP engineering environment
 ARG NPM_REGISTRY_URL=https://registry.npmjs.orgjs-proxy/
 
-RUN npm cache clean --force
-RUN npm config set -g registry ${NPM_REGISTRY_URL} \
-    && apk update && apk add --no-cache ca-certificates=20251003-r0 libc6-compat=1.1.0-r4 \
+RUN npm cache clean --force && \
+    npm config set -g registry ${NPM_REGISTRY_URL} \
+    && apk update && apk add --no-cache --repository=https://<redacted>/repository/alpine/v3.23/main \
+    ca-certificates=20260611-r0 libc6-compat=1.1.0-r4 \
     && update-ca-certificates
 
 WORKDIR /app
@@ -30,7 +31,7 @@ FROM dwpbase AS runner
 WORKDIR /app
 
 RUN apk update && apk add --no-cache --repository=https://<redacted>/repository/alpine/v3.23/main \
-    openssl=3.5.5-r0 busybox=1.37.0-r30 \
+    openssl=3.5.7-r0 busybox=1.37.0-r30 \
     && addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs \
     && mkdir -p .next

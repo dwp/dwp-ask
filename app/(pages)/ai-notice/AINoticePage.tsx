@@ -5,10 +5,10 @@ import {
   AINotice,
   Analytics,
   BackLink,
-  Heading,
   Main,
   SectionBreak,
-} from "@/app/components";
+  Title,
+} from "@/components";
 
 export default function AINoticePage() {
   const router = useRouter();
@@ -17,16 +17,18 @@ export default function AINoticePage() {
       <Analytics />
       <BackLink
         data-testid="ai-notice-home-link"
-        aria-label="Home"
+        aria-label="Back"
         tabIndex={0}
-        onClick={() => router.push("/")}
+        onClick={() => router.push("/chat")}
       >
         <span style={{ textDecoration: "underline", cursor: "pointer" }}>
-          Home
+          Back
         </span>
       </BackLink>
       <SectionBreak visible={false} level="m" aria-hidden />
-      <Heading data-testid="ai-notice-heading">Using AI Responsibly</Heading>
+      <Title level="h1" data-testid="ai-notice-heading">
+        Using AI Responsibly
+      </Title>
       <AINotice />
     </Main>
   );

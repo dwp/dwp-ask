@@ -1,4 +1,4 @@
-import { AINoticeMetadata } from "@/app/constants/PageMetadata";
+import { AINoticeMetadata } from "@/constants/PageMetadata";
 import AINoticePage from "./AINoticePage";
 
 export const metadata = AINoticeMetadata;

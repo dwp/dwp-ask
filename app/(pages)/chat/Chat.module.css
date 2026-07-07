@@ -16,10 +16,10 @@
 }
 
 .chatWindow {
-  width: 70%;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 1em 2em 1.5em 2em; /* reduced bottom padding */
+  padding: 1em 32px 1.5em 32px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -61,7 +61,6 @@
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
-  margin: 0 0 1rem 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
@@ -98,19 +97,13 @@
 }
 
 @media screen and (max-width: 768px) {
-  .chatWrapper {
-    display: block;
-    min-height: 100vh;
-  }
   .chatWindow {
     width: 100%;
     padding: 1em;
-    height: auto;
-    min-height: 100vh;
+    height: 100%;
     box-sizing: border-box;
   }
   .chatContainer {
-    max-height: 60vh;
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;

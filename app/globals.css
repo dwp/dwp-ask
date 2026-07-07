@@ -1,5 +1,16 @@
+@layer theme, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
 :root {
-  --govuk-blue-text: #1d70b8;
+  --govuk-blue: #1d70b8;
+  --govuk-red: #d4351c;
+  --govuk-green: #00703c;
+  --govuk-black: #0b0c0c;
+  --govuk-light-grey: #f3f2f1;
+  --govuk-white: #ffffff;
+  --govuk-grey: #b1b4b6;
 }
 
 * {
@@ -32,4 +43,16 @@ html {
 
 .govuk-label {
   margin-bottom: 0 !important;
+}
+
+.govuk-focus:focus {
+  outline: 3px solid transparent;
+  background-color: #fd0;
+  box-shadow:
+    0 -2px #fd0,
+    0 4px #0b0c0c;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: #0b0c0c;
 }

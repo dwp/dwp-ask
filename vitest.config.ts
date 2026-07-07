@@ -28,7 +28,13 @@ export default defineConfig({
     maxWorkers: 4,
     coverage: {
       provider: "v8",
-      reporter: ["text", "json", "html", "lcov"],
+      reporter: ["text", "json", "html", "lcov", "cobertura"],
+      thresholds: {
+        statements: 90,
+        branches: 90,
+        functions: 90,
+        lines: 90,
+      },
       exclude: [
         "node_modules/",
         "coverage/",
@@ -39,6 +45,9 @@ export default defineConfig({
         "**/*.d.ts",
         "**/*.module.css",
         "**/index.ts",
+        "utils/test/",
+        "constants/",
+        "content/",
       ],
     },
     isolate: true,

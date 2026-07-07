@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChatInput, ChooseCountry, Message } from "@/app/components";
-import { useLocation, useModal, useResponsive } from "@/app/providers";
-import type { ChatHistoryType } from "@/app/types";
-import { loadHistory } from "@/app/utils";
+import { ChatInput, ChooseCountry, Message } from "@/components";
+import { useLocation, useModal, useResponsive } from "@/providers";
+import type { ChatHistoryType } from "@/types";
+import { loadHistory } from "@/utils";
 import styles from "../Chat.module.css";
 
 export default function ChatWindow() {
