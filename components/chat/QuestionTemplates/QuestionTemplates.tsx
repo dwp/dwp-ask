@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Card, ChevronDown, ChevronUp, Link } from "@/components";
+import { Card, Link, Paragraph } from "@/components";
 import { QUESTION_TEMPLATES } from "@/constants/QuestionTemplates";
 import type { QuestionTemplatesProps } from "@/types";
 import styles from "./QuestionTemplates.module.css";
@@ -38,27 +38,35 @@ export default function QuestionTemplates({
   }, []);
 
   return (
-    <div className={styles.question_templates} data-testid="question-templates">
-      <Link
-        ref={toggleRef}
-        tabIndex={isDisabled ? -1 : 0}
-        data-testid="question-templates-toggle"
-        aria-expanded={expanded}
-        onBlur={() => setFocused(false)}
-        onFocus={() => setFocused(true)}
-        onClick={() => setExpanded(!expanded)}
-      >
-        <span>{expanded ? <ChevronUp /> : <ChevronDown />}</span>
-        Question templates
-      </Link>
+    <section
+      className="w-full"
+      ref={toggleRef}
+      data-testid="question-templates"
+    >
       {expanded && (
         <div
-          className={styles.templateContainer}
+          className="mb-5 w-full"
           role="alert"
           ref={accordionContentRef}
           aria-hidden={!expanded}
         >
-          <div className={styles.templateContent}>
+          <div className="w-full flex justify-between items-center mb-3">
+            <Paragraph
+              className="!mb-0 !font-bold !text-base"
+              data-testid="question-templates-helper-text"
+              aria-expanded={expanded}
+            >
+              Select one to help you start writing your question
+            </Paragraph>
+            <Link
+              className="!text-base"
+              data-testid="question-templates-close-toggle"
+              onClick={() => setExpanded(false)}
+            >
+              Close
+            </Link>
+          </div>
+          <div className="m-0 mx-auto">
             <div
               className={styles.templateGrid}
               data-testid="question-templates-grid"
@@ -67,14 +75,17 @@ export default function QuestionTemplates({
                 <Card
                   text={q}
                   key={index}
-                  onClick={handleCardClick}
                   className={styles.templateCard}
+                  onClick={(text) => {
+                    handleCardClick(text);
+                    setExpanded(false);
+                  }}
                 />
               ))}
             </div>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }

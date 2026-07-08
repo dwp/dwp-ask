@@ -1,6 +1,4 @@
-export const q1Response = `Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Changing lead carer for a child**, which might help you.\n\n- What is the process for changing the lead carer for a child in a Universal Credit claim?\n- How does a claimant nominate a new lead carer for a child in a shared custody arrangement?\n- What happens if two parents cannot agree on who should be the lead carer for a child?`;
-
-export const q4Response = `### Eligibility Criteria for Universal Credit for Claimants Under 18
+export const q1Response = `### Eligibility Criteria for Universal Credit for Claimants Under 18
 
 #### General Rules
 - Claimants under 18 are not usually entitled to Universal Credit.
@@ -53,26 +51,30 @@ A young person under 18 may be eligible for Universal Credit if they meet at lea
 - In England, 16 and 17-year-olds are expected to be in education or training. If they are not, they must meet the eligibility conditions to qualify for Universal Credit.
 - If a 16 or 17-year-old claims Universal Credit, any Child Benefit being paid for them will stop.`;
 
+export const q4Response = `Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Changing lead carer for a child**, which might help you.\n\n- What is the process for changing the lead carer for a child in a Universal Credit claim?\n- How does a claimant nominate a new lead carer for a child in a shared custody arrangement?\n- What happens if two parents cannot agree on who should be the lead carer for a child?`;
+
 export const q5Response = `Sorry, I cannot help with questions about **HR policies for DWP staff**.\n\nFor information on policies for staff, visit [Human Resources (opens in a new tab)](https://intranet.dwp.gov.uk/section/working-dwp/human-resources).\n\nUse DWP Ask to help you find Universal Learning guidance.`;
 
 export function returnPrototypeResponse(counter: number) {
   const q1 = {
     answer: q1Response,
-    citations: [],
-    id: 314,
+    citations: [
+      {
+        title: "Under 18s: Guidance",
+        highlights_url:
+          "https://intranet.dwp.gov.uk/policy/under-18s-guidance#:~:text=another,other%20person%20is%20responsible%20for%20a%20child%2C%20but",
+        chunks: "",
+      },
+      {
+        title: "Eligibility for Universal Credit: Guidance",
+        highlights_url:
+          "https://intranet.dwp.gov.uk/policy/eligibility-universal-credit-guidance#:~:text=To%20be%20eligible%20for%20Universal%20Credit%20a%20claimant,the%20GB%20residency%20requirements%20-%20see",
+        chunks: "",
+      },
+    ],
+    id: 2,
     answer_gen_enabled: true,
-    question_feedback: {
-      topic_label: "Changing lead carer for a child",
-      preamble:
-        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Universal Credit for under 18s**, which might help you.",
-      postscript: null,
-      out_of_scope: false,
-      suggested_questions: [
-        "What are the eligibility criteria for Universal Credit for claimants under 18?",
-        "Can a 16 or 17-year-old claim Universal Credit if they are estranged from their parents?",
-        "What support is available for under 18s claiming Universal Credit in England?",
-      ],
-    },
+    question_feedback: null,
   };
 
   const q2 = {
@@ -141,7 +143,7 @@ export function returnPrototypeResponse(counter: number) {
     question_feedback: {
       topic_label: "Budgeting Advances",
       preamble:
-        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a question template.\n\nOr, select one of these questions about **Budgeting Advances**, which might help you.",
+        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Budgeting Advances**, which might help you.",
       postscript: null,
       out_of_scope: false,
       suggested_questions: [
@@ -154,23 +156,21 @@ export function returnPrototypeResponse(counter: number) {
 
   const q4 = {
     answer: q4Response,
-    citations: [
-      {
-        title: "Under 18s: Guidance",
-        highlights_url:
-          "https://intranet.dwp.gov.uk/policy/under-18s-guidance#:~:text=another,other%20person%20is%20responsible%20for%20a%20child%2C%20but",
-        chunks: "",
-      },
-      {
-        title: "Eligibility for Universal Credit: Guidance",
-        highlights_url:
-          "https://intranet.dwp.gov.uk/policy/eligibility-universal-credit-guidance#:~:text=To%20be%20eligible%20for%20Universal%20Credit%20a%20claimant,the%20GB%20residency%20requirements%20-%20see",
-        chunks: "",
-      },
-    ],
-    id: 2,
+    citations: [],
+    id: 314,
     answer_gen_enabled: true,
-    question_feedback: null,
+    question_feedback: {
+      topic_label: "Changing lead carer for a child",
+      preamble:
+        "Sorry. I could not find an answer to your question.\n\nTry rephrasing your question with more details. For help, use a template.\n\nOr, select one of these questions about **Universal Credit for under 18s**, which might help you.",
+      postscript: null,
+      out_of_scope: false,
+      suggested_questions: [
+        "What are the eligibility criteria for Universal Credit for claimants under 18?",
+        "Can a 16 or 17-year-old claim Universal Credit if they are estranged from their parents?",
+        "What support is available for under 18s claiming Universal Credit in England?",
+      ],
+    },
   };
 
   const q5 = {

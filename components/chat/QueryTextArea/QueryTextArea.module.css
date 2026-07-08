@@ -1,6 +1,7 @@
 .queryTextAreaWrapper {
   border: 1px dashed black;
   padding: 20px;
+  width: 100%;
 }
 
 .chatWindowInputButton {
@@ -33,7 +34,11 @@
   margin: auto 0 !important;
   height: 37.99px !important;
   box-shadow: none !important;
-  width: 120px !important;
+  padding: 0 16px !important;
+  white-space: nowrap !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 @media (max-width: 768px) {
@@ -48,7 +53,7 @@
   }
 }
 
-@media (max-width: 464px) {
+@media (max-width: 530px) {
   .queryTextAreaButtons {
     flex-direction: column;
     gap: 24px;

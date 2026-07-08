@@ -10,8 +10,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "format": "biome check --write",
-    "prepproto": "rm -rf .next && rm -rf node_modules"
+    "format": "biome check --write"
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.3.2",

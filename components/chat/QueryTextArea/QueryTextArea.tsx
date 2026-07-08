@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Button, InputError, Paragraph, QuestionTemplates } from "@/components";
+import {
+  Button,
+  InputError,
+  openQuestionTemplatesPanel,
+  Paragraph,
+  QuestionTemplates,
+} from "@/components";
 import { GDS_COLOURS } from "@/constants/Colours";
 import { TEXT_AREA_CONFIG } from "@/constants/QueryTextArea";
 import { useModal } from "@/providers";
@@ -82,7 +88,10 @@ export default function QueryTextArea({
           charLimit={CHARACTER_LIMIT}
         />
       )}
-      <Paragraph className="!font-bold" data-testid="pii-warning-chat-screen">
+      <Paragraph
+        className="!font-bold !text-base"
+        data-testid="pii-warning-chat-screen"
+      >
         Do not include claimants&apos; personally identifiable information (PII)
         in your searches.
       </Paragraph>
@@ -133,6 +142,18 @@ export default function QueryTextArea({
             }}
           >
             New chat
+          </Button>
+          <Button
+            className={styles.newChatButton}
+            disabled={isDisabled}
+            type="button"
+            data-testid="chat-window-helpmeask-button"
+            aria-label="Help me ask"
+            buttonColour={GDS_COLOURS.LIGHT_GREY}
+            buttonTextColour={GDS_COLOURS.BLACK}
+            onClick={openQuestionTemplatesPanel}
+          >
+            Help me ask
           </Button>
         </div>
       </div>
