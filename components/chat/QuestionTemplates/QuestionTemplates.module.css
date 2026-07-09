@@ -1,15 +1,3 @@
-.templateContainer {
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.templateContent {
-  margin: 0 auto;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-}
-
 .templateGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;

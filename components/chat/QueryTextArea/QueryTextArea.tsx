@@ -63,6 +63,7 @@ export default function QueryTextArea({
 
   const handleTemplateClick = (templateText: string) => {
     onChange(null, templateText);
+    textareaRef?.current?.focus();
   };
 
   const isDisabled = isModalOpen;

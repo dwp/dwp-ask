@@ -3,6 +3,7 @@ import type { GDSParagraphProps } from "@/types";
 export default function Paragraph({
   children,
   className,
+  id,
   tabIndex,
   role,
   ...props
@@ -12,6 +13,7 @@ export default function Paragraph({
 
   return (
     <p
+      id={id}
       tabIndex={tabIndex}
       className={`govuk-body ${className ? className : ""}`}
       aria-hidden={ariaHidden || false}

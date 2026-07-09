@@ -5,7 +5,7 @@ import {
   AIDisclaimer,
   AnswerContent,
   CountryCards,
-  FeedbackSection,
+  // FeedbackSection,
   Paragraph,
   QuestionTemplateLink,
   SourceLink,
@@ -14,7 +14,11 @@ import {
 import { createAnswerMarkdownOptions } from "@/constants/AnswerMarkdownConfig";
 import { GENERIC_ERROR } from "@/constants/Errors";
 import { useLocation, useResponsive } from "@/providers";
-import type { ChatHistoryType, IsFeedbackHelpful, LocationType } from "@/types";
+import type {
+  ChatHistoryType,
+  // IsFeedbackHelpful,
+  LocationType,
+} from "@/types";
 import {
   confirmChangeLocation,
   sendQueryMessage,
@@ -43,11 +47,11 @@ export default function Answer({
   counter,
   setCounter,
 }: Readonly<AnswerProps>) {
-  const [isFeedbackHelpful, setIsFeedbackHelpful] =
-    useState<IsFeedbackHelpful>(null);
-  const [feedbackCompleted, setFeedbackCompleted] = useState(
-    message.feedback_given || false,
-  );
+  // const [isFeedbackHelpful, setIsFeedbackHelpful] =
+  //   useState<IsFeedbackHelpful>(null);
+  // const [feedbackCompleted, setFeedbackCompleted] = useState(
+  //   message.feedback_given || false,
+  // );
   const [isSubmittingSuggestion, setIsSubmittingSuggestion] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -92,6 +96,7 @@ export default function Answer({
         location,
         counter,
       );
+      setCounter((prevCounter) => prevCounter + 1);
       setLoadedChatHistory(history);
     } catch (error: unknown) {
       console.error("Error submitting suggested question:", error);
@@ -172,7 +177,7 @@ export default function Answer({
           />
         )}
 
-        <FeedbackSection
+        {/* <FeedbackSection
           message={message}
           isError={isError}
           isView={isView}
@@ -180,7 +185,7 @@ export default function Answer({
           feedbackCompleted={feedbackCompleted}
           setIsFeedbackHelpful={setIsFeedbackHelpful}
           setFeedbackCompleted={setFeedbackCompleted}
-        />
+        /> */}
       </div>
     </article>
   );

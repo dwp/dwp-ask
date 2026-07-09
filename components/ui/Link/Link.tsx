@@ -25,6 +25,8 @@ type CommonProps = {
   onFocus?: (event: FocusEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   "aria-label"?: string;
   "aria-hidden"?: boolean;
+  "aria-expanded"?: boolean;
+  "aria-controls"?: string;
   "data-testid"?: string;
 };
 
@@ -63,6 +65,8 @@ const Link = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkType>(
       onFocus,
       "aria-label": ariaLabel,
       "aria-hidden": ariaHidden,
+      "aria-expanded": ariaExpanded,
+      "aria-controls": ariaControls,
       "data-testid": dataTest,
     } = props;
 
@@ -82,6 +86,8 @@ const Link = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkType>(
           onFocus={onFocus}
           aria-label={ariaLabel}
           aria-hidden={ariaHidden}
+          aria-expanded={ariaExpanded}
+          aria-controls={ariaControls}
           data-testid={dataTest}
           style={{
             background: "none",

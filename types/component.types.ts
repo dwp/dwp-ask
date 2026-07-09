@@ -201,6 +201,7 @@ export type ModalConstantsType = {
 
 export type GDSParagraphProps = {
   children: React.ReactNode | string;
+  id?: string;
   className?: string;
   tabIndex?: number;
   role?: string;
