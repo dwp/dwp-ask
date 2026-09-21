@@ -11,8 +11,6 @@ default:
       - job_execution_timeout
       - scheduler_failure
       - data_integrity_failure
-  tags:
-    - docker
 
 workflow:
   auto_cancel:
@@ -26,7 +24,11 @@ workflow:
       when: always
 
 include:
-  - project: dwp/engineering/pipeline-solutions/gitlab/functions
-    ref: 6.0.7
-    file:
-      - functions/base-mr.gitlab-ci.yml
+  - local: "/gitlab-ci/includes.yml"
+  - local: gitlab-ci/jobs.yml
+ 
+  
+
+
+
+  

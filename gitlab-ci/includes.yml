@@ -1,0 +1,80 @@
+include:
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/credential-check
+    ref: 2-3-1
+    file: ci-include-credential-check-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/fragment-version-check
+    ref: 2.4.0
+    file: ci-include-fragment-version-check-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/required-fragment-check
+    ref: 2.16.0
+    file: ci-include-required-fragment-check-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/update-semver
+    ref: 4.6.0
+    file: ci-include-update-semver-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/gitleaks
+    ref: 3.1.4
+    file: ci-include-gitleaks-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/shell-check
+    ref: 3.1.5
+    file: ci-include-shell-check-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/todo-checker
+    ref: 2-1-4
+    file: ci-include-todo-checker-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/es-lint
+    ref: 4.0.0
+    file: ci-include-es-lint-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/docker-lint
+    ref: 2.5.1
+    file: ci-include-docker-lint-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-unit-test
+    ref: 2-1-2
+    file: ci-include-node-unit-test-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-nyc-test-coverage
+    ref: 3.3.1
+    file: ci-nyc-test-coverage-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-stryker-mutation
+    ref: 3.23.0
+    file: ci-include-node-stryker-mutation-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/sonarqube
+    ref: 4.3.3
+    file: ci-include-sonar-scanner-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-audit
+    ref: 3.0.0
+    file: ci-include-node-audit-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-outdated
+    ref: 2.5.1
+    file: ci-include-node-outdated-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/docker-build
+    ref: 5.1.1
+    file: ci-include-docker-build-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/sast-container-check
+    ref: 2.11.1
+    file: ci-include-sast-container-check-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/trivy-container-check
+    ref: 2.21.0
+    file: ci-include-trivy-container-check-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/container-structure-test
+    ref: 2.10.0
+    file: ci-include-container-structure-test-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/docker-compose-run
+    ref: 3.5.0
+    file: ci-include-docker-compose-run-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/push-to-ecr
+    ref: 4.7.2
+    file: ci-include-push-to-ecr-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/create-project-badges
+    ref: 2.5.0
+    file: ci-include-create-project-badges-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/fragments/schedule-creation
+    ref: 2.7.1
+    file: ci-include-schedule-creation-base.yml
+  - project: dwp/engineering/pipeline-solutions/gitlab/functions
+    ref: 7.3.3
+    file: functions/base-mr.gitlab-ci.yml
+  - component: $CI_SERVER_HOST/dwp/engineering/pipeline-solutions/gitlab/components/container-scanning/scan@1.0.0
+    inputs:
+      license_scan: true
+      target_images: "image-a:1.0.0,image-b:1.0.0,image-c:1.0.0"
+      job_dependencies:
+        - docker-build
+        - docker-build-another-image
